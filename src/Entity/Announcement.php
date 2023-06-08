@@ -31,9 +31,13 @@ class Announcement
     #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Dog::class)]
     protected Collection $dogs;
 
+    #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Request::class)]
+    protected Collection $requests;
+
     public function __construct()
     {
         $this->dogs = new ArrayCollection();
+        $this->requests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -113,6 +117,36 @@ class Announcement
             // set the owning side to null (unless already changed)
             if ($dog->getAnnouncement() === $this) {
                 $dog->setAnnouncement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Request>
+     */
+    public function getRequests(): Collection
+    {
+        return $this->requests;
+    }
+
+    public function addRequest(Request $request): self
+    {
+        if (!$this->requests->contains($request)) {
+            $this->requests->add($request);
+            $request->setAnnouncement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRequest(Request $request): self
+    {
+        if ($this->requests->removeElement($request)) {
+            // set the owning side to null (unless already changed)
+            if ($request->getAnnouncement() === $this) {
+                $request->setAnnouncement(null);
             }
         }
 

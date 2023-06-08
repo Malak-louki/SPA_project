@@ -44,10 +44,14 @@ class Dog
     #[ORM\ManyToMany(targetEntity: Race::class, inversedBy: 'dogs')]
     protected Collection $races;
 
+    #[ORM\ManyToMany(targetEntity: Request::class, mappedBy: 'dogs')]
+    protected Collection $requests;
+
     public function __construct()
     {
         $this->images = new ArrayCollection();
         $this->races = new ArrayCollection();
+        $this->requests = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -189,6 +193,33 @@ class Dog
     public function removeRace(Race $race): self
     {
         $this->races->removeElement($race);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Request>
+     */
+    public function getRequests(): Collection
+    {
+        return $this->requests;
+    }
+
+    public function addRequest(Request $request): self
+    {
+        if (!$this->requests->contains($request)) {
+            $this->requests->add($request);
+            $request->addDog($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRequest(Request $request): self
+    {
+        if ($this->requests->removeElement($request)) {
+            $request->removeDog($this);
+        }
 
         return $this;
     }
