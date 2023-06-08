@@ -39,7 +39,7 @@ class AnnouncerRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
+    //    /**
 //     * @return Announcer[] Returns an array of Announcer objects
 //     */
 //    public function findByExampleField($value): array
@@ -54,7 +54,7 @@ class AnnouncerRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Announcer
+    //    public function findOneBySomeField($value): ?Announcer
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')
