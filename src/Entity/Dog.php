@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\DogRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -35,6 +37,18 @@ class Dog
     #[ORM\ManyToOne(inversedBy: 'dogs')]
     #[ORM\JoinColumn(nullable: false)]
     protected ?Announcement $announcement = null;
+
+    #[ORM\OneToMany(mappedBy: 'dog', targetEntity: Image::class)]
+    protected Collection $images;
+
+    #[ORM\ManyToMany(targetEntity: Race::class, inversedBy: 'dogs')]
+    protected Collection $races;
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+        $this->races = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +135,60 @@ class Dog
     public function setAnnouncement(?Announcement $announcement): self
     {
         $this->announcement = $announcement;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Image>
+     */
+    public function getImages(): Collection
+    {
+        return $this->images;
+    }
+
+    public function addImage(Image $image): self
+    {
+        if (!$this->images->contains($image)) {
+            $this->images->add($image);
+            $image->setDog($this);
+        }
+
+        return $this;
+    }
+
+    public function removeImage(Image $image): self
+    {
+        if ($this->images->removeElement($image)) {
+            // set the owning side to null (unless already changed)
+            if ($image->getDog() === $this) {
+                $image->setDog(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Race>
+     */
+    public function getRaces(): Collection
+    {
+        return $this->races;
+    }
+
+    public function addRace(Race $race): self
+    {
+        if (!$this->races->contains($race)) {
+            $this->races->add($race);
+        }
+
+        return $this;
+    }
+
+    public function removeRace(Race $race): self
+    {
+        $this->races->removeElement($race);
 
         return $this;
     }
