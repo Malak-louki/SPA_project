@@ -11,9 +11,9 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 class DogFixtures extends Fixture implements DependentFixtureInterface
 {
 
-    public function __construct(AnnouncementRepository $annoucementRepository)
+    public function __construct(AnnouncementRepository $announcementRepository)
     {
-        $this->announcementRepository = $annoucementRepository;
+        $this->announcementRepository = $announcementRepository;
     }
 
     public function load(ObjectManager $manager): void
