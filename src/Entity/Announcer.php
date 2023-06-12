@@ -10,22 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: AnnouncerRepository::class)]
 class Announcer extends User
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    protected ?int $id = null;
-
     #[ORM\OneToMany(mappedBy: 'announcer', targetEntity: Announcement::class)]
     protected Collection $announcements;
 
     public function __construct()
     {
         $this->announcements = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     /**
@@ -56,5 +46,15 @@ class Announcer extends User
         }
 
         return $this;
+    }
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = parent::getRoles();
+        $roles[] = 'ROLE_ANNOUNCER';
+
+        return array_unique($roles);
     }
 }

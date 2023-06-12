@@ -8,13 +8,14 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: AdminRepository::class)]
 class Admin extends User
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
-    protected ?int $id = null;
-
-    public function getId(): ?int
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        return $this->id;
+        $roles = parent::getRoles();
+        $roles[] = 'ROLE_ADMIN';
+
+        return array_unique($roles);
     }
 }
