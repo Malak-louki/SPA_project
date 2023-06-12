@@ -31,7 +31,8 @@ class UserFixtures extends Fixture
                 ->setLastName("Dupont")
                 ->setEmail("jeanAdopter@gmail.com")
                 ->setPassword("azerty123")
-                ->setCity("lyon"),
+                ->setCity("lyon")
+                ->setTel("+33654125214"),
             (new Announcer())
                 ->setFirstName("Jean")
                 ->setLastName("Dupont")
