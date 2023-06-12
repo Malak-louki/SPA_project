@@ -12,16 +12,14 @@ use App\DataFixtures\RaceFixtures;
 
 class DogFixtures extends Fixture implements DependentFixtureInterface
 {
-
-    public function __construct(AnnouncementRepository $announcementRepository, RaceRepository $raceRepository)
-    {
-        $this->announcementRepository = $announcementRepository;
-        $this->raceRepository = $raceRepository;
+    public function __construct(
+        protected AnnouncementRepository $announcementRepository,
+        protected RaceRepository $raceRepository
+    ) {
     }
 
     public function load(ObjectManager $manager): void
     {
-
         $announcements = $this->announcementRepository->findAll();
         $races = $this->raceRepository->findAll();
         $dogs = [
