@@ -2,6 +2,14 @@
 {% block body%}
 {{parent()}}
 <h1>
-CECI EST UNE PAGE D'ACCUEIL
-</h1>
+Les dernières annonces :</h1>
+{% block annnonces %}
+<section class="annonces">
+{% block annonce %}
+{% {% for item in items %}
+    
+{% endfor %} %}
+{% endblock %}
+</section>
+{% endblock %}
 {% endblock %}
