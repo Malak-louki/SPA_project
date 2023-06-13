@@ -5,11 +5,9 @@
 Les dernières annonces :</h1>
 {% block annnonces %}
 <section class="annonces">
-{% block annonce %}
-{% {% for item in items %}
-    
-{% endfor %} %}
-{% endblock %}
+{% for annonce in annonces %}
+    <h2>{{ annonce.title }}</h2>
+{% endfor %}
 </section>
 {% endblock %}
 {% endblock %}

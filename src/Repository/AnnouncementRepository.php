@@ -44,20 +44,20 @@ class AnnouncementRepository extends ServiceEntityRepository
     // {
     //     $this->getEntityManager()->;
     // }
-//    /**
+
+    //    /**
 //     * @return Announcement[] Returns an array of Announcement objects
 //     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findForHome(): array
+    {
+        return $this->createQueryBuilder('a')
+            // ->leftJoin('a.dogs', 'd') si besoin d'un left join
+            ->orderBy('a.updatedAt', 'DESC')
+            ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     //    public function findOneBySomeField($value): ?Announcement
 //    {

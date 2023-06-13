@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\AnnouncementRepository;
+// use App\Repository\ImageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -10,12 +11,11 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(string $image, AnnouncementRepository $announcementRepository): Response
+    public function index(AnnouncementRepository $announcementRepository): Response
     {
-        $annonce = $announcementRepository->findOneBy([
-            'title' => $image
-        ]);
+        $annonces = $announcementRepository->findForHome();
         return $this->render('default/index.html.twig', [
+            'annonces' => $annonces,
         ]);
     }
 }
