@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>
-			{% block title %}Welcome!
+			{% block title %}Woof-adopte
 			{% endblock %}
 		</title>
 		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
@@ -25,9 +25,17 @@
 							<li class="nav-item">
 								<a class="nav-link" href="#">Liste annonces</a>
 							</li>
+							{% if not is_granted("ROLE_ADPOTER") or not is_granted("ROLE_ANNOUNCER") or not is_granted("ROLE_ADMIN") %}
 							<li class="nav-item">
 								<a class="nav-link" href="#">Inscription</a>
 							</li>
+							{% endif %}
+							{% if is_granted("ROLE_ADOPTER") or is_granted("ROLE_ANNOUNCER") or is_granted("ROLE_ADMIN") %}
+							<li class="nav-item">
+								<a class="nav-link" href="#">Déconnexion</a>
+							</li>
+							{% endif %}
+							
 						</ul>
 					</div>
 				</nav>
