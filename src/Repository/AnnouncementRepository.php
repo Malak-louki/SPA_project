@@ -39,6 +39,11 @@ class AnnouncementRepository extends ServiceEntityRepository
         }
     }
 
+
+    // public function findOneBy()
+    // {
+    //     $this->getEntityManager()->;
+    // }
 //    /**
 //     * @return Announcement[] Returns an array of Announcement objects
 //     */
@@ -54,7 +59,7 @@ class AnnouncementRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Announcement
+    //    public function findOneBySomeField($value): ?Announcement
 //    {
 //        return $this->createQueryBuilder('a')
 //            ->andWhere('a.exampleField = :val')
