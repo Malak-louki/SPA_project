@@ -1,13 +1,66 @@
 {% extends 'base.html.twig' %}
 {% block body%}
-{{parent()}}
-<h1>
-Les dernières annonces :</h1>
-{% block annnonces %}
-<section class="annonces">
-{% for annonce in annonces %}
-    <h2>{{ annonce.title }}</h2>
-{% endfor %}
-</section>
-{% endblock %}
-{% endblock %}
+	{{parent()}}
+	<h1>
+		Les dernières annonces :</h1>
+	{% block annnonces %}
+		<section class="annonces container text-center py-5">
+			{% for annonce in annonces %}
+				<div class="d-flex">
+					<div class="card w-50 m-auto  my-5">
+						<div class="chiens d-flex flex-row">
+							{% for dog in annonce.dogs %}
+								{% for image in dog.images %}
+									<img src="{{image.path}}" alt="image de chien" class="w-25">
+								{% endfor %}
+							{% endfor %}
+						</div>
+						<h2>{{ annonce.title }}</h2>
+						<h3>Nombre de chiens disponible :
+							{{ annonce.dogs|length }}
+						</h3>
+						<h3>Races :</h3>
+						{% for dog in annonce.dogs %}
+							{% for race in dog.races %}
+								<h3>
+									{{race.name}}
+								</h3>
+							{% endfor %}
+						{% endfor %}
+						<h3>Dernière mise à jour :
+							{{ annonce.updatedAt|date("d/m/Y") }}
+						</h3>
+						<a href="#" class="btn btn-primary w-25 m-auto">Consulter</a>
+					</div>
+				</div>
+			{% endfor %}
+			<a href="#" class="btn btn-primary">Voir liste des chiens</a>
+		</section>
+		<section class="actifsEleveurs">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Noms éleveurs ou SPA</th>
+						<th scope="col">Nombre annonces encore disponible</th>
+						<th scope="col">Nombre annonces pourvues</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in users %}
+						<tr>
+							<td scope="row">
+								{{user.firstName}}
+							</td>
+							<td>
+								{{user|length}}
+							</td>
+							<td>
+								{# ?? #}
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</td>
+		</tbody>
+	</tr>
+</tbody></table></section>{% endblock %}{% endblock %}
