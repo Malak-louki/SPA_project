@@ -8,45 +8,139 @@
 		<div class="d-flex justify-content-between">
 			<h2>Portée de
 				{{annonce.title }}</h2>
-			{% if dog.isAdopted == true %}
-				<p class="bg-warning p-1 rounded">Déjà adopté</p>
-			{% endif %}
+			{% for dog in annonce.dogs %}
 
+
+			</div>
+			<div class="d-flex justify-content-between mt-5">
+				<h3 class="">{{ dog.name }}</h3>
+				{% if dog.isLof == false %}
+					<p class="bg-warning rounded">Non L.O.F</p>
+				{% else %}
+					<p class="bg-warning m-2 rounded">L.O.F</p>
+				{% endif %}
+				{% if dog.isAdopted == true %}
+					<p class="bg-warning p-1 rounded col-2 p-0">Déjà adopté</p>
+				{% endif %}
+			</div>
+			<div class="d-flex justify-content-around">
+				{% for image in dog.images %}
+					<div class="">
+						<img src="{{ asset(image.path) }}" alt="" class="">
+					</div>
+				{% endfor %}
+			</div>
+			<ul class="list-unstyled bg-light p-3">
+				<li class="d-flex">
+					<p class="col-2">Races</p>
+					<p>Golden Retriver</p>
+				</li>
+				<li class="d-flex">
+					<p class="col-2">Pets friendly</p>
+					{% if dog.isPetFriendly == true %}
+						<p>Oui</p>
+					{% else %}
+						<p>Non</p>
+					{% endif %}
+				</li>
+				<li class="d-flex">
+					<p class="col-2">Antécédents</p>
+					<p>{{dog.background}}</p>
+				</li>
+				<li class="d-flex">
+					<p class="col-2">Description</p>
+					<p>{{dog.description}}</p>
+				</li>
+			</ul>
 		</div>
-		<div class="d-flex justify-content-around mt-5">
-			<h3 class="">{{ dog.name }}</h3>
-			{% if dog.isLof == false %}
-				<p class="bg-warning rounded">Non L.O.F</p>
-				{{ dump(dog.isLof) }}
-			{% else %}
-				<p class="bg-warning m-2 rounded">L.O.F</p>
-			{% endif %}
-		</div>
-		<div class="d-flex">
-			{% for i in image %}
-				{# <img src="{{ asset('img/' ~ i.path[1]) }}" alt=""> #}
-				<img src="{{ asset(i.path) }}" alt="" class="w-25">
-			{% endfor %}
-			{# <img src="{{ asset(image.path) }}" alt="" class="w-25"> #}
-		</div>
-		<ul class="list-unstyled bg-light p-3">
-			<li class="d-flex">
-				<p class="col-2">Races</p>
-				<p>Golden Retriver</p>
-			</li>
-			<li class="d-flex">
-				<p class="col-2">Pets friendly</p>
-				<p>Oui</p>
-			</li>
-			<li class="d-flex">
-				<p class="col-2">Antécédents</p>
-				<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. At eaque esse velit numquam sit maxime totam nulla ad, cum ea non quod quibusdam mollitia sapiente aut natus necessitatibus porro pariatur.</p>
-			</li>
-			<li class="d-flex">
-				<p class="col-2">Description</p>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur nesciunt exercitationem cum, enim asperiores illum nam ab adipisci fugit minus voluptatum. Perspiciatis vitae veritatis magnam rem eaque sequi in tenetur?
-																			Accusantium ipsa enim voluptas ea, natus vitae nam soluta voluptatum laborum molestiae hic temporibus cum autem est facilis ratione, minima recusandae illum esse sunt ducimus distinctio voluptatibus? Molestias, dolores sunt.</p>
-			</li>
-		</ul>
-	</section>
-{% endblock %}
+	{% endfor %}
+
+
+	{# <p>Portée de
+																																																{{annonces.title}}</p> #}
+{# {% for annonce in annonces %} #}
+	{# {% for dog in annonces.dogs %}
+																																																{% if dog.isAdopted == true %}
+																																																	<p>Déjà adopté</p>
+																																																{% endif %}
+																																																<p>{{dog.name}}</p>
+																																																{% if dog.isLof == false %}
+																																																	<p class="bg-warning rounded">Non L.O.F</p> #}
+	{# {{ dump(dog.isLof) }} #}
+	{# {% else %}
+																																																	<p class="bg-warning m-2 rounded">L.O.F</p>
+																																																</p>
+																																															{% endif %}
+																																															{% for image in dog.images %}
+																																																<img src="{{ asset(image.path) }}" alt="" class="w-25">
+																																															{% endfor %}
+																																														{% endfor %} #}
+	{# {% endfor %} #}
+	{# {% for image in dog.images %}
+																																																																																																								<img src="{{ asset(image.path) }}" alt="" class="w-25">
+																																																																																																								{% endfor %} #}
+</section>{% endblock %}{# Version 1 #}{# Version 2
+																																																						{# <section class="container mt-5">
+																																																									<div class="d-flex justify-content-between">
+																																																							
+																																																										{% for annonce in annonces %}
+																																																											<h2>Portée de
+																																																												{{annonce.title }}</h2>
+																																																							
+																																																											{% for dog in annonce.dogs %}
+																																																							
+																																																												{% if dog.isAdopted == true %}
+																																																													<p class="bg-warning p-1 rounded">Déjà adopté</p>
+																																																												{% endif %}
+																																																							
+																																																												<div class="d-flex justify-content-around mt-5">
+																																																													<h3 class="">{{ dog.name }}</h3>
+																																																							
+																																																													{% if dog.isLof == false %}
+																																																														<p class="bg-warning rounded">Non L.O.F</p>
+																																																													{% else %}
+																																																							
+																																																														<p class="bg-warning m-2 rounded">L.O.F</p>
+																																																													{% endif %}
+																																																							
+																																																												</div>
+																																																												<li class="d-flex">
+																																																													<p class="col-2">Pets friendly</p>
+																																																							
+																																																													{% if dog.isPetFriendly == true %}
+																																																														<p>Oui</p>
+																																																													{% else %}
+																																																														<p>Non</p>
+																																																													{% endif %}
+																																																							
+																																																												</li>
+																																																												<li class="d-flex">
+																																																													<p class="col-2">Antécédents</p>
+																																																													<p>{{dog.background}}</p>
+																																																												</li>
+																																																												<li class="d-flex">
+																																																													<p class="col-2">Description</p>
+																																																													<p>{{dog.description}}</p>
+																																																												</li>
+																																																												{% for image in dog.images %}
+																																																													<div class="d-flex">
+																																																														<img src="{{ asset(image.path) }}" alt="" class="w-25">
+																																																													</div>
+																																																							
+																																																													<ul class="list-unstyled bg-light p-3">
+																																																														{% for race in dog.races %}
+																																																															<li class="d-flex">
+																																																																<p class="col-2">Race</p>
+																																																																<p>{{race.name}}</p>
+																																																															</li>
+																																																							
+																																																														{% endfor %}
+																																																													</div>
+																																																							
+																																																							
+																																																												</ul>
+																																																											</section>
+																																																										{% endfor %}
+																																																									{% endfor %}
+																																																								{% endfor %}
+																																																							{% endblock %} #}
