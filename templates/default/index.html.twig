@@ -10,7 +10,7 @@
 					<div class="card w-50 m-auto  my-5">
 						<div class="chiens d-flex flex-row">
 							{% for dog in annonce.dogs %}
-								{% for image in dog.images %}
+								{% for image in annonce.getDogsImages %}
 									<img src="{{image.path}}" alt="image de chien" class="w-25">
 								{% endfor %}
 							{% endfor %}
@@ -46,13 +46,13 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for user in users %}
+					{% for announcer in announcers %}
 						<tr>
 							<td scope="row">
-								{{user.firstName}}
+								{{announcer.firstName}}
 							</td>
 							<td>
-								{{user|length}}
+								{{announcer|length}}
 							</td>
 							<td>
 								{# ?? #}
