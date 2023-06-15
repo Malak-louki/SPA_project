@@ -5,7 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Adopter;
 use App\Entity\Announcer;
 use App\Entity\Race;
-// use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -30,8 +30,7 @@ class DashboardController extends AbstractDashboardController
             ->renderContentMaximized();
     }
 
-    // CONFIGURATION GLOBALE DES CRUD 
-/*
+    // CONFIGURATION GLOBALE DES PAGES CRUD 
     public function configureCrud(): Crud
     {
         return parent::configureCrud()
@@ -40,7 +39,7 @@ class DashboardController extends AbstractDashboardController
             ->setPaginatorRangeSize(3);
 
     }
-*/
+
 
     public function configureMenuItems(): iterable
     {

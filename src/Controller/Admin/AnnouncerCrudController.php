@@ -32,7 +32,7 @@ class AnnouncerCrudController extends AbstractCrudController
             TextField::new('firstName', "Prénom"),
             TextField::new('lastName', "Nom"),
             TextField::new('email', "e-Mail"),
-            TextField::new('password', "Mot de passe")->hideOnIndex(),
+            TextField::new('plainPassword', "Nouveau mot de passe")->onlyOnForms(),
             TextField::new('city', "Ville"),
             // Field::new('department'),
         ];

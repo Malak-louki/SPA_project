@@ -29,10 +29,7 @@ class AdopterCrudController extends AbstractCrudController
         return $crud
             ->setPageTitle('index', 'Administration des adoptants')
             ->setEntityLabelInSingular('Adoptant')
-            ->setEntityLabelInPlural('Adoptants')
-            // ->setPaginatorPageSize(30)
-            // ->setPaginatorRangeSize(3)
-        ;
+            ->setEntityLabelInPlural('Adoptants');
     }
 
     public function configureFields(string $pageName): iterable
@@ -44,7 +41,7 @@ class AdopterCrudController extends AbstractCrudController
             TextField::new('lastName', "Nom"),
             TextField::new('tel', "Téléphone"),
             TextField::new('email', "e-Mail"),
-            TextField::new('password', "Mot de passe")->hideOnIndex()->setFormType(PasswordType::class),
+            TextField::new('plainPassword', "Nouveau mot de passe")->onlyOnForms(),
             TextField::new('city', "Ville"),
             // Field::new('department'),
         ];

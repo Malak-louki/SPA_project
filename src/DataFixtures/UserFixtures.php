@@ -33,19 +33,19 @@ class UserFixtures extends Fixture
                 ->setPassword("aze123")
                 ->setCity("Roanne"),
             (new Adopter())
+                ->setTel("+33654125214")
                 ->setFirstName("Lilia")
                 ->setLastName("Lamini")
                 ->setEmail("lilia@gmail.com")
                 ->setPassword("aze123")
-                ->setCity("lyon")
-                ->setTel("+33654125214"),
+                ->setCity("lyon"),
             (new Adopter())
+                ->setTel("+33654167214")
                 ->setFirstName("Mimi")
                 ->setLastName("Xouxou")
                 ->setEmail("mimi@gmail.com")
                 ->setPassword("aze123")
-                ->setCity("lyon")
-                ->setTel("+33654167214"),
+                ->setCity("lyon"),
             (new Announcer())
                 ->setFirstName("Annonceur")
                 ->setLastName("Elevage des beaux chiens")
