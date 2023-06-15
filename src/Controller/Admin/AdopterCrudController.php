@@ -26,10 +26,9 @@ class AdopterCrudController extends AbstractCrudController
             ->setEntityLabelInPlural('Adoptants');
     }
 
-    // GENERE UNE ERREUR AVEC DEPARTEMENT !! 
-    /**/
     public function configureActions(Actions $actions): Actions
     {
+        // Ajout bouton "consultation" d'un adoptant
         return $actions
             ->add(Crud::PAGE_INDEX, Action::DETAIL)
             ->add(Crud::PAGE_EDIT, Action::SAVE_AND_ADD_ANOTHER);
@@ -46,11 +45,7 @@ class AdopterCrudController extends AbstractCrudController
             TextField::new('email', "e-Mail"),
             TextField::new('plainPassword', "Nouveau mot de passe")->onlyOnForms(),
             TextField::new('city', "Ville"),
-            AssociationField::new('department', "Département")
-            // ->setFormTypeOptions([
-            //     'by_reference' => false,
-            // ])
-            ,
+            AssociationField::new('department', "Département"),
         ];
     }
 
