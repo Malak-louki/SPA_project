@@ -10,7 +10,6 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class HashPasswordSubscriber implements EventSubscriberInterface
 {
-
     public function __construct(protected UserPasswordHasherInterface $hasher)
     {
     }
@@ -32,7 +31,7 @@ class HashPasswordSubscriber implements EventSubscriberInterface
     {
         $entity = $event->getEntityInstance();
 
-        if (!($entity instanceof User || empty($entity->getPlainPassword()))) {
+        if (!($entity instanceof User) || is_null($entity->getPlainPassword())) {
             return;
         }
 

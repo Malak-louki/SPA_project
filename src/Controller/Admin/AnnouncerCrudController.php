@@ -7,6 +7,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class AnnouncerCrudController extends AbstractCrudController
 {
@@ -34,7 +35,7 @@ class AnnouncerCrudController extends AbstractCrudController
             TextField::new('email', "e-Mail"),
             TextField::new('plainPassword', "Nouveau mot de passe")->onlyOnForms(),
             TextField::new('city', "Ville"),
-            // Field::new('department'),
+            AssociationField::new('department', "Département"),
         ];
     }
 }
