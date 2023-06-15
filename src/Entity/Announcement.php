@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Length;
 
 #[ORM\Entity(repositoryClass: AnnouncementRepository::class)]
 class Announcement
@@ -165,4 +166,17 @@ class Announcement
         $this->generalInformation = $generalInformation;
         return $this;
     }
+
+    // Méthode pour refactoriser l'affichage de mon annonce
+    // public function getDogsImages(): array
+    // {
+    //     $images = [];
+
+    //     foreach ($this->getDogs() as $dog) {
+    //         foreach ($dog->getImages() as $image) {
+    //             $images[] = $image;
+    //         }
+    //     }
+    //     return $images;
+    // }
 }
