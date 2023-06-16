@@ -21,29 +21,54 @@ class UserFixtures extends Fixture
     {
         $users = [
             (new Admin())
-                ->setFirstName("Jean")
-                ->setLastName("Dupont")
-                ->setEmail("jeanAdmin@gmail.com")
-                ->setPassword("azerty123")
+                ->setFirstName("Amélie")
+                ->setLastName("Roche")
+                ->setEmail("amelie@gmail.com")
+                ->setPassword("aze123")
                 ->setCity("lyon"),
+            (new Admin())
+                ->setFirstName("Admin Prénom")
+                ->setLastName("Admin NOM")
+                ->setEmail("admin@gmail.com")
+                ->setPassword("aze123")
+                ->setCity("Roanne"),
             (new Adopter())
-                ->setFirstName("Jean")
-                ->setLastName("Dupont")
-                ->setEmail("jeanAdopter@gmail.com")
-                ->setPassword("azerty123")
+                ->setFirstName("Lilia")
+                ->setLastName("Lamini")
+                ->setEmail("lilia@gmail.com")
+                ->setPassword("aze123")
                 ->setCity("lyon")
                 ->setTel("+33654125214"),
+            (new Adopter())
+                ->setFirstName("Mimi")
+                ->setLastName("Xouxou")
+                ->setEmail("mimi@gmail.com")
+                ->setPassword("aze123")
+                ->setCity("lyon")
+                ->setTel("+33654167214"),
             (new Announcer())
-                ->setFirstName("Jean")
-                ->setLastName("Duponazerty123t")
-                ->setEmail("jeanAnnouncer@gmail.com")
-                ->setPassword("")
+                ->setFirstName("Annonceur")
+                ->setLastName("Elevage des beaux chiens")
+                ->setEmail("elevage@gmail.com")
+                ->setPassword("aze123")
                 ->setCity("lyon"),
             (new Announcer())
-                ->setFirstName("Jean")
-                ->setLastName("Dupont")
-                ->setEmail("jeanAnnounceLaPocalyspe@gmail.com")
-                ->setPassword("azerty123")
+                ->setFirstName("Annonceur")
+                ->setLastName("Elevage du soleil")
+                ->setEmail("elevage1@gmail.com")
+                ->setPassword("aze123")
+                ->setCity("lyon"),
+            (new Announcer())
+                ->setFirstName("Annonceur")
+                ->setLastName("SPA de Brignais")
+                ->setEmail("spa1@gmail.com")
+                ->setPassword("aze123")
+                ->setCity("lyon"),
+            (new Announcer())
+                ->setFirstName("Annonceur")
+                ->setLastName("SPA Marrenes")
+                ->setEmail("spa@gmail.com")
+                ->setPassword("aze123")
                 ->setCity("lyon"),
         ];
 
@@ -53,7 +78,6 @@ class UserFixtures extends Fixture
 
             $manager->persist($user);
         }
-
 
         $manager->flush();
     }

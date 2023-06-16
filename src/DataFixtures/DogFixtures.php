@@ -56,14 +56,31 @@ class DogFixtures extends Fixture implements DependentFixtureInterface
                 ->setIsAdopted(0)
                 ->addRace($races[20]),
             (new Dog())
-                ->setName("Pazzi")
+                ->setName("Pazzi (non dispo)")
                 ->setIsLof(0)
                 ->setBackground("Retrouvé dans une poubelle derrière une pizzeria")
                 ->setIsPetFriendly(1)
                 ->setDescription("Il est traumatisé des pizzas, il est donc obèse, il aboie aussi avec un accent et il a une grande gesture")
                 ->setIsAdopted(1)
                 ->addRace($races[1]),
+            (new Dog())
+                ->setName("Loulou (non dispo)")
+                ->setIsLof(0)
+                ->setBackground("Passé Loulou")
+                ->setIsPetFriendly(1)
+                ->setDescription("Description de Loulou ")
+                ->setIsAdopted(1)
+                ->addRace($races[78]),
+            (new Dog())
+                ->setName("Oudide (non dispo)")
+                ->setIsLof(1)
+                ->setBackground("Passé Oudide")
+                ->setIsPetFriendly(1)
+                ->setDescription("Description de Oudide ")
+                ->setIsAdopted(1)
+                ->addRace($races[59]),
         ];
+
         foreach ($dogs as $dog) {
             $nb = mt_rand(0, count($announcements) - 1);
 
