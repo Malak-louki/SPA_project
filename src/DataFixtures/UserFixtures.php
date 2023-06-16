@@ -39,6 +39,12 @@ class UserFixtures extends Fixture
                 ->setEmail("lilia@gmail.com")
                 ->setPassword("aze123")
                 ->setCity("lyon"),
+            (new Admin())
+                ->setFirstName("Admin Prénom")
+                ->setLastName("Admin NOM")
+                ->setEmail("admin@gmail.com")
+                ->setPassword("aze123")
+                ->setCity("Roanne"),
             (new Adopter())
                 ->setTel("+33654167214")
                 ->setFirstName("Mimi")
@@ -46,6 +52,20 @@ class UserFixtures extends Fixture
                 ->setEmail("mimi@gmail.com")
                 ->setPassword("aze123")
                 ->setCity("lyon"),
+            (new Announcer())
+                ->setFirstName("Lilia")
+                ->setLastName("Lamini")
+                ->setEmail("lilia@gmail.com")
+                ->setPassword("aze123")
+                ->setCity("lyon")
+                ->setTel("+33654125214"),
+            (new Adopter())
+                ->setFirstName("Mimi")
+                ->setLastName("Xouxou")
+                ->setEmail("mimi@gmail.com")
+                ->setPassword("aze123")
+                ->setCity("lyon")
+                ->setTel("+33654167214"),
             (new Announcer())
                 ->setFirstName("Annonceur")
                 ->setLastName("Elevage des beaux chiens")
