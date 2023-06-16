@@ -6,7 +6,7 @@ use App\Entity\Race;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
-class RaceFixtures extends Fixture 
+class RaceFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
@@ -94,9 +94,9 @@ class RaceFixtures extends Fixture
             "shiba inu",
             "yorkshire"
         ];
-        foreach ($races as $race){
+        foreach ($races as $race) {
             $newRace = (new Race())
-            ->setName($race);
+                ->setName(ucfirst($race));
             $manager->persist($newRace);
 
         }

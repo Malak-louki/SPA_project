@@ -21,9 +21,7 @@ class AnnouncerCrudController extends AbstractCrudController
         return $crud
             ->setPageTitle('index', 'Administration des annonceurs')
             ->setEntityLabelInSingular('Annonceur')
-            ->setEntityLabelInPlural('Annonceurs')
-            ->setPaginatorPageSize(30)
-            ->setPaginatorRangeSize(3);
+            ->setEntityLabelInPlural('Annonceurs');
     }
 
     public function configureFields(string $pageName): iterable

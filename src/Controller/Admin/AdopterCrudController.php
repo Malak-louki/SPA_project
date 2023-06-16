@@ -46,10 +46,11 @@ class AdopterCrudController extends AbstractCrudController
             TextField::new('email', "e-Mail"),
             TextField::new('plainPassword', "Nouveau mot de passe")->onlyOnForms(),
             TextField::new('city', "Ville"),
-            // AssociationField::new('department', "Département")
-            //     ->setFormTypeOptions([
-            //         'by_reference' => false,
-            //     ]),
+            AssociationField::new('department', "Département")
+            // ->setFormTypeOptions([
+            //     'by_reference' => false,
+            // ])
+            ,
         ];
     }
 
