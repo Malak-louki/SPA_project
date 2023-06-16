@@ -17,13 +17,13 @@ class AnnonceController extends AbstractController
     //     
     {
 
-        $annonce = $repository->find($id);
+        $annonces = $repository->find($id);
         // $dog = $dogRepository->find($id);
         // $images = $imageRepository->findImage($id);
         // $race = $raceRepository->find($id);
 
-        return $this->render('annonce/index.html.twig', [
-            'annonce' => $annonce,
+        return $this->render('annonce/announcement.html.twig', [
+            'annonces' => $annonces,
             // 'dog' => $dog,
             // 'images' => $images,
             // 'race' => $race,
