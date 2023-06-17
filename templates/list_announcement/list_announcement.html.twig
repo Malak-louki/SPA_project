@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+
+	{% for annonce in annonces %}
+		{% for dog in annonce.dogs %}
+			{% for image in dog.images %}
+				<img src="{{ asset('image.path') }}" alt="">
+			{% endfor %}
+			<article>
+				<h1>{{annonce.title}}</h1>
+			</article>
+
+		{% endfor %}
+	{% endfor %}
+
+{% endblock %}
