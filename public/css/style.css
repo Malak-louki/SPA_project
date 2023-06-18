@@ -2,7 +2,12 @@ a {
     color: rgb(52, 52, 52);
 }
 
-img{
+img:first-child{
     height: 200px;
     width: 200px;
+}
+
+img{
+    height: 100px;
+    width: 100px;
 }
