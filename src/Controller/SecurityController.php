@@ -12,6 +12,7 @@ class SecurityController extends AbstractController
     #[Route(path: '/login', name: 'security_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
+        // à gérer en fontion du user connecter "adopter ou annonceur ou bien admin"
         // if ($this->getUser()) {
         //     return $this->redirectToRoute('target_path');
         // }
