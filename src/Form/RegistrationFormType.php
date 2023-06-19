@@ -34,7 +34,7 @@ class RegistrationFormType extends AbstractType
                 'label'=> 'Accepter les conditions générales',
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'Vous devez acceptez les conditions générales',
+                        'message' => 'Vous devez accepter les conditions générales',
                     ]),
                 ],
             ])
@@ -47,7 +47,7 @@ class RegistrationFormType extends AbstractType
                 'required'=>true,
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Entrer un mot de passe svp',
+                        'message' => 'Entrez un mot de passe svp',
                     ]),
                     new Length([
                         'min' => 8,
