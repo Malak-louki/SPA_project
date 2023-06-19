@@ -1,1 +1,70 @@
 {% extends 'base.html.twig' %}
+{% block body%}
+	{{parent()}}
+	<h1>
+		Les dernières annonces :</h1>
+	{% block announcements %}
+		<section class="annonces container py-5">
+			{% for announcement in announcements %}
+				{% if not announcement.announcementClosed %}
+					<div class="d-flex">
+						<div class="card w-50 m-auto  my-3 p-3">
+							<div class="chiens d-flex flex-row">
+								{% for image in announcement.getDogsImages|slice(0, 3) %}
+									{# verif : if announcements.getDogsImages|length < 3 #}
+									<img src="{{image.path}}" alt="image de chien" class="w-25">
+								{% endfor %}
+							</div>
+							<h2 class="text-center">{{ announcement.title }}</h2>
+							<h3>Nombre de chiens disponible :
+								{{ announcement.dogs|length }}
+							</h3>
+							<div class="races d-flex align-items-center">
+								<h3>Races :</h3>
+								{% for race in announcement.getDogsRaces %}
+									<p class="mx-3 my-0">
+										{{race.name}}
+									</p>
+								{% endfor %}
+							</div>
+							<h3>Dernière mise à jour :
+								{{ announcement.updatedAt|date("d/m/Y") }}
+							</h3>
+							<a href="#" class="btn btn-warning w-25 m-auto">Consulter</a>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+			<div class="text-center">
+				<a href="#" class="btn btn-warning">Voir liste des chiens</a>
+			</div>
+		</section>
+		<section class="actifsEleveurs">
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Noms éleveurs ou SPA</th>
+						<th scope="col">Nombre annonces encore disponible</th>
+						<th scope="col">Nombre annonces pourvues</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for announcer in announcers %}
+						<tr>
+							<td scope="row">
+								{{announcer.email}}
+							</td>
+							<td>
+								{{ announcer.announcements|length - announcer.countClosedAnnounces() }}
+							</td>
+							<td>
+								{{ announcer.countClosedAnnounces() }}
+								{# afficher le nombre d'annonces pourvues ? compter ? #}
+							</td>
+						{% endfor %}
+					</tr>
+				</tbody>
+			</table>
+		</section>
+	{% endblock %}
+{% endblock %}

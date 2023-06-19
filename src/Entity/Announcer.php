@@ -57,4 +57,11 @@ class Announcer extends User
 
         return array_unique($roles);
     }
+
+    public function countClosedAnnounces(): int
+    {
+        return $this->getAnnouncements()->filter(function (Announcement $announcement) {
+            return $announcement->isAnnouncementClosed();
+        })->count();
+    }
 }

@@ -53,6 +53,15 @@ class AnnouncerRepository extends ServiceEntityRepository
 //            ->getResult()
 //        ;
 //    }
+    public function findForHome(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->leftJoin('u.announcements', 'a')
+            ->orderBy("a.updatedAt", "DESC")
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
     //    public function findOneBySomeField($value): ?Announcer
 //    {

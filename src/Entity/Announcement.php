@@ -168,15 +168,40 @@ class Announcement
     }
 
     // Méthode pour refactoriser l'affichage de mon annonce
-    // public function getDogsImages(): array
-    // {
-    //     $images = [];
+    public function getDogsImages(): array
+    {
+        $images = [];
 
-    //     foreach ($this->getDogs() as $dog) {
-    //         foreach ($dog->getImages() as $image) {
-    //             $images[] = $image;
-    //         }
-    //     }
-    //     return $images;
-    // }
+        foreach ($this->getDogs() as $dog) {
+            foreach ($dog->getImages() as $image) {
+                $images[] = $image;
+            }
+        }
+        return $images;
+    }
+    public function getDogsRaces(): array
+    {
+        $races = [];
+
+        foreach ($this->getDogs() as $dog) {
+            foreach ($dog->getRaces() as $race) {
+                $races[] = $race;
+            }
+        }
+
+        return $races;
+    }
+
+    public function isAnnouncementClosed(): bool
+    {
+        if ($this->getDogs()->count() == 0) {
+            return false;
+        }
+
+        $adoptedDogs = $this->getDogs()->filter(function (Dog $dog) {
+            return $dog->getIsAdopted();
+        });
+
+        return $adoptedDogs->count() == $this->getDogs()->count();
+    }
 }
