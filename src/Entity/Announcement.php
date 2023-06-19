@@ -168,13 +168,15 @@ class Announcement
     }
 
     // Méthode pour refactoriser l'affichage de mon annonce
-    public function getDogsImages(): array
+    public function getDogsImages(bool $onlyNotAdopted = false): array
     {
         $images = [];
 
         foreach ($this->getDogs() as $dog) {
-            foreach ($dog->getImages() as $image) {
-                $images[] = $image;
+            if ($onlyNotAdopted === false || !$dog->isIsAdopted()) {
+                foreach ($dog->getImages() as $image) {
+                    $images[] = $image;
+                }
             }
         }
         return $images;

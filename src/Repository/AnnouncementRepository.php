@@ -49,6 +49,8 @@ class AnnouncementRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->leftJoin('a.dogs', 'd')
+            ->where('d.isAdopted = false')
+            ->orWhere('d.id IS NULL')
             ->groupBy('a.id')
             ->getQuery()
             ->getResult()
