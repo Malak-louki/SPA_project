@@ -1,0 +1,12 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Page non autotisée{% endblock %}
+
+{% block body %}
+    <h1>Accès non autorisé</h1>
+
+    <p>
+        Vous pouvez retourner sur la <a href="{{ path('home') }}">page d'accueil</a>.
+    </p>
+{% endblock %}

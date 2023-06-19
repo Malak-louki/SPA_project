@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Entity\Admin;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -44,6 +45,11 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
+        }
+
+        $user = $token->getUser();
+        if ($user instanceof Admin) {
+            return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index'));
         }
 
         // on peut rajouter des condition ici par ex si c'est un admin on le redirige directement sur la page admin et 

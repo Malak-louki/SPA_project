@@ -34,7 +34,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     protected ?string $password = null;
-    
+
 
     #[Assert\Length(min: 6)]
     protected ?string $plainPassword = null;
@@ -48,7 +48,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 150, nullable: true)]
     protected ?string $city = null;
 
-    #[ORM\ManyToOne(inversedBy: 'users')]
+    #[ORM\ManyToOne(inversedBy: 'users', cascade: ['persist'])]
     protected ?Department $department = null;
 
     public function getId(): ?int
