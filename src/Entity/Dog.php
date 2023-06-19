@@ -95,7 +95,7 @@ class Dog
         return $this;
     }
 
-    public function isIsPetFriendly(): ?bool
+    public function getIsPetFriendly(): ?bool
     {
         return $this->isPetFriendly;
     }
@@ -119,7 +119,7 @@ class Dog
         return $this;
     }
 
-    public function isIsAdopted(): ?bool
+    public function getIsAdopted(): ?bool
     {
         return $this->isAdopted;
     }

@@ -16,11 +16,11 @@ class DefaultController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(AnnouncementRepository $announcementRepository, AnnouncerRepository $announcerRepository): Response
     {
-        $annonces = $announcementRepository->findForHome();
+        $announcements = $announcementRepository->findForHome();
         $announcers = $announcerRepository->findForHome();
 
         return $this->render('default/index.html.twig', [
-            'annonces' => $annonces,
+            'announcements' => $announcements,
             'announcers' => $announcers,
         ]);
     }

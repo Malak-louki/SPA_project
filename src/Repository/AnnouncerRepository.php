@@ -56,7 +56,8 @@ class AnnouncerRepository extends ServiceEntityRepository
     public function findForHome(): array
     {
         return $this->createQueryBuilder('u')
-            ->setMaxResults(6)
+            ->leftJoin('u.announcements', 'a')
+            ->orderBy("a.updatedAt", "DESC")
             ->getQuery()
             ->getResult()
         ;
