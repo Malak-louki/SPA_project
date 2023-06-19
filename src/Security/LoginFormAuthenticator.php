@@ -49,7 +49,8 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         // on peut rajouter des condition ici par ex si c'est un admin on le redirige directement sur la page admin et 
         // non sur la page d'accueil etc...
         return new RedirectResponse($this->urlGenerator->generate('home'));
-        // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        // return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index'));
+
     }
 
     protected function getLoginUrl(Request $request): string
