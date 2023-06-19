@@ -3,6 +3,7 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
+{{parent()}}
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -13,7 +14,8 @@
             Vous êtes connecter en tant que {{ app.user.userIdentifier }}, <a href="{{ path('security_logout') }}">Se deconnecter</a>
         </div>
     {% endif %}
-
+<div class="container">
+<div class="row m-auto w-50">
     <h1 class="h3 mb-3 font-weight-normal">Connexion</h1>
     <div class="form-group">
     <label for="inputEmail">Email</label>
@@ -33,11 +35,13 @@
         </div>
    
 
-    <button class="btn btn-lg btn-dark" type="submit">
+    <button class="btn btn-warning w-25 m-auto" type="submit">
         Se connecter
     </button>
-    <a id="creat_acount" href="">
+    <a id="creat_acount" href="{{path('app_register')}}">
     Vous avez pas de compte ? inscrivez vous ici 
     </a>
+    </div>
+    </div>
 </form>
 {% endblock %}
