@@ -13,8 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-//  /!\ Decommenter pour permettre la sécurisation de la page
-// #[IsGranted("ROLE_ADMIN")] 
+#[IsGranted("ROLE_ADMIN")]
 class DashboardController extends AbstractDashboardController
 {
     #[Route(path: '/admin', name: 'admin_dashboard_index')]
