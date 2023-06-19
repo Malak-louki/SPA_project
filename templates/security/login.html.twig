@@ -11,7 +11,7 @@
 		{% endif %}
 		{% if app.user %}
 			<div class="mb-3">
-				Vous êtes connecter en tant que
+				Vous êtes connecté en tant que
 				{{ app.user.userIdentifier }},
 				<a href="{{ path('security_logout') }}">Se deconnecter</a>
 			</div>
@@ -32,14 +32,14 @@
 				<div class="form-check mb-3">
 					<label>
 						<input type="checkbox" name="_remember_me">
-						Se souvenir de moi
+						Se souvenir de moi.
 					</label>
 				</div>
 				<button class="btn btn-warning w-25 m-auto" type="submit">
 					Se connecter
 				</button>
 				<a id="creat_acount" href="{{path('app_register')}}">
-					Vous avez pas de compte ? inscrivez vous ici
+					Vous n'avez pas de compte ? Inscrivez vous ici.
 				</a>
 			</div>
 		</div>

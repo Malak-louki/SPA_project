@@ -30,10 +30,10 @@ class AnnouncerCrudController extends AbstractCrudController
             IdField::new('id')->setFormTypeOption('disabled', 'disabled'),
             TextField::new('firstName', "Prénom"),
             TextField::new('lastName', "Nom"),
-            TextField::new('email', "e-Mail"),
-            TextField::new('plainPassword', "Nouveau mot de passe")->onlyOnForms(),
             TextField::new('city', "Ville"),
             AssociationField::new('department', "Département"),
+            TextField::new('email', "e-Mail"),
+            TextField::new('plainPassword', "Nouveau mot de passe")->onlyOnForms(),
         ];
     }
 }

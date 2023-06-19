@@ -50,7 +50,7 @@ class RaceFixtures extends Fixture
             "cockapoo",
             "corgi",
             "coton de tulear",
-            "dalamtien",
+            "dalmatien",
             "danois",
             "doberman",
             "épagneul breton",
