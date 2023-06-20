@@ -173,7 +173,7 @@ class Announcement
         $images = [];
 
         foreach ($this->getDogs() as $dog) {
-            if ($onlyNotAdopted === false || !$dog->isIsAdopted()) {
+            if ($onlyNotAdopted === false || !$dog->getIsAdopted()) {
                 foreach ($dog->getImages() as $image) {
                     $images[] = $image;
                 }
