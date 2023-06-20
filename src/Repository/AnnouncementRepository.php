@@ -45,6 +45,17 @@ class AnnouncementRepository extends ServiceEntityRepository
     //     $this->getEntityManager()->;
     // }
 
+    public function groupByAnnouncement(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->leftJoin('a.dogs', 'd')
+            ->where('d.isAdopted = false')
+            ->orWhere('d.id IS NULL')
+            ->groupBy('a.id')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
     //    /**
 //     * @return Announcement[] Returns an array of Announcement objects
 //     */

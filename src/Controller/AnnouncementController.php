@@ -17,6 +17,7 @@ class AnnouncementController extends AbstractController
 
         return $this->render('annonce/announcement.html.twig', [
             'annonces' => $annonces,
+            'id' => $id,
         ]);
     }
 }
