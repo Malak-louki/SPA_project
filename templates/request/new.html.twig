@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande de contact{% endblock %}
+
+{% block body %}
+    <section class="container mt-5">
+        <div class="">
+            <h1 class="font-weight-bold">
+                Formulaire de contact
+            </h1>
+            <h3>Annonce : {{annonce.title }}</h3>
+        </div>
+        <h4 class="mt-5">Je souhaite plus d'informations sur :</h4>
+		<ul class="list-unstyled d-flex justify-content-around">
+			{% for dog in annonce.dogs %}
+				<li class="mt-3">
+					<a href="#" class="btn btn-outline-secondary">{{dog.name}}</a>
+				</li>
+			{% endfor %}
+		</ul>
+        {{form_start(form)}}
+            {{form_row(form.announcement)}}
+            {{form_row(form.createdAt)}}
+            {{form_row(form.dogs)}} 
+            <button type="submit" class="btn btn-warning">Envoyer</button>
+        {{form_end(form)}}
+    </section>
+{% endblock body %}

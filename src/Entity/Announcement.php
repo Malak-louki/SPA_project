@@ -210,9 +210,11 @@ class Announcement
 
         return $adoptedDogs->count() == $this->getDogs()->count();
     }
+
     /**
      * @return Collection<int, Dog> 
      */
+
     public function getAdoptableDogs(): Collection
     {
         $adoptableDogs = $this->getDogs()->filter(function (Dog $dog) {
@@ -232,5 +234,11 @@ class Announcement
         });
 
         return $adoptableDogs;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
+
     }
 }

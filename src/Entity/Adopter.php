@@ -73,4 +73,9 @@ class Adopter extends User
 
         return array_unique($roles);
     }
+
+    public function __toString()
+    {
+        return $this->getLastName();
+    }
 }
