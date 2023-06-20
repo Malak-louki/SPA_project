@@ -27,14 +27,14 @@
 							<a class="nav-link" href="{{path('app_list_announcement')}}">Liste annonces</a>
 						</li>
 						{% if not app.user %}
-							{% if not is_granted("ROLE_ADPOTER") or not is_granted("ROLE_ANNOUNCER") or not is_granted("ROLE_ADMIN") %}
+							{% if not is_granted("ROLE_ADOPTER") or not is_granted("ROLE_ANNOUNCER") or not is_granted("ROLE_ADMIN") %}
 								<li class="nav-item">
 									<a class="nav-link" href="{{path('security_login')}}">Connexion</a>
 								</li>
 							{% endif %}
 						{% endif %}
 						{% if not app.user %}
-							{% if not is_granted("ROLE_ADPOTER") or not is_granted("ROLE_ANNOUNCER") or not is_granted("ROLE_ADMIN") %}
+							{% if not is_granted("ROLE_ADOPTER") or not is_granted("ROLE_ANNOUNCER") or not is_granted("ROLE_ADMIN") %}
 								<li class="nav-item">
 									<a class="nav-link" href="{{path('app_register')}}">Inscription</a>
 								</li>

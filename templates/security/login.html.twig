@@ -9,7 +9,6 @@
 		{% if error %}
 			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 		{% endif %}
-
 		{% if app.user %}
 			<div class="mb-3">
 				Vous êtes connecter en tant que
@@ -36,8 +35,6 @@
 						Se souvenir de moi
 					</label>
 				</div>
-
-
 				<button class="btn btn-warning w-25 m-auto" type="submit">
 					Se connecter
 				</button>
