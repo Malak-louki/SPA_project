@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<body>
-	<head>
-		<meta charset="UTF-8">
-		<title>
-			{% block title %}WoofAdopte
-			{% endblock %}
-		</title>
-		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-		<script defer src="{{ asset('js/bootstrap.min.js') }}"></script>
-		<link
-		rel="stylesheet" href="{{ asset('css/style.css') }}">
-		{# Commentaire nécessaire, mais perturbant #}
-		{% block stylesheets %}{% endblock %}
-		{% block javascripts %}{% endblock %}
-	</head>
-</body>
+<head>
+	<meta charset="UTF-8">
+	<title>
+		{% block title %}WoofAdopte
+		{% endblock %}
+	</title>
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+	<script defer src="{{ asset('js/bootstrap.min.js') }}"></script>
+	<link
+	rel="stylesheet" href="{{ asset('css/style.css') }}">
+	{# Commentaire nécessaire, mais perturbant #}
+	{% block stylesheets %}{% endblock %}
+	{% block javascripts %}{% endblock %}
+</head>
 <body>
 	{% block header %}
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -45,22 +43,18 @@
 						<li class="nav-item">
 							<a class="nav-link" href="#">Liste annonces</a>
 						</li>
-						{% if not is_granted("ROLE_ADPOTER") or not is_granted("ROLE_ANNOUNCER") or not is_granted("ROLE_ADMIN") %}
-							<li class="nav-item">
-								<a class="nav-link" href="{{path('security_login')}}">Connexion</a>
-							</li>
-						{% endif %}
 						{% if is_granted("ROLE_ADOPTER") or is_granted("ROLE_ANNOUNCER") or is_granted("ROLE_ADMIN") %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('security_logout') }}">Déconnexion</a>
 							</li>
 						{% endif %}
+					{% endif %}
 
-					</ul>
-				</div>
-			</nav>
-		{% endblock header %}
-	{% endblock %}
+				</ul>
+			</div>
+		</nav>
+	{% endblock header %}
+	{% block body %}{% endblock %}
 	{% block footer %}
 		<footer class="p-4 mt-5 bg-dark text-white">
 			<div class="d-flex align-items-center justify-content-between">
@@ -72,4 +66,4 @@
 			</div>
 		</footer>
 	{% endblock footer %}
-</body></body></html></body></html></body></html>
+</body></html>
