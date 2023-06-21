@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Announcement;
+use App\Form\Filter\AnnouncementFilter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -45,16 +46,40 @@ class AnnouncementRepository extends ServiceEntityRepository
     //     $this->getEntityManager()->;
     // }
 
-    public function groupByAnnouncement(): array
+    public function groupByAnnouncement(AnnouncementFilter $filter): array
     {
-        return $this->createQueryBuilder('a')
+        $qb = $this->createQueryBuilder('a')
             ->leftJoin('a.dogs', 'd')
-            ->where('d.isAdopted = false')
-            ->orWhere('d.id IS NULL')
             ->groupBy('a.id')
-            ->getQuery()
-            ->getResult()
         ;
+
+        if ($filter->getIsLof()) {
+            $qb
+                ->andWhere('d.isLof = :isLof')
+                ->setParameter('isLof', $filter->getIsLof());
+        }
+
+        if (!$filter->getIsAdopted()) {
+            $qb
+                ->andWhere(
+                    $qb->expr()->orX('d.isAdopted = false', 'd.id IS NULL') // Ajouter des parenthèses autour de la condition en SQL : WHERE (d1_.is_adopted = 0 OR d1_.id IS NULL)
+                    // ->andWhere('d.isAdopted = false')
+                    // ->orWhere('d.id IS NULL')
+                )
+            ;
+        }
+
+        if ($filter->getRace()) {
+            $qb
+                ->leftJoin('d.races', 'r')
+                ->andWhere('r = :race')
+                ->setParameter('race', $filter->getRace())
+            ;
+        }
+
+        return $qb
+            ->getQuery()
+            ->getResult();
     }
     //    /**
 //     * @return Announcement[] Returns an array of Announcement objects

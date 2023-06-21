@@ -3,10 +3,20 @@
 {% block title %}{% endblock %}
 
 {% block body %}
+	{{ form_start(form) }}
+	<div class="d-flex container justify-content-around align-items-center">
+		{{ form_row(form.isLof) }}
+		<div class="text-nowrap">
+			{{ form_row(form.isAdopted) }}
+		</div>
+		{{ form_row(form.race) }}
+		<button type="submit" class="btn btn-warning">Valider</button>
+	</div>
+
+	{{ form_end(form) }}
 	<section class="container">
 		<div class="d-flex flex-wrap justify-content-between">
 			{% for annonce in annonces %}
-
 				<article class="my-5 p-3 col-5 bg-body-secondary">
 					<div class="text-center">
 						{% for image in annonce.getDogsImages(true)|slice(0, 3) %}
@@ -15,17 +25,15 @@
 					</div>
 					<h1 class="text-center">{{annonce.title}}</h1>
 					<div class="d-flex justify-content-around my-3">
-						<p>Chiens disponibles :{{annonce.dogs|length}}</p>
+						<p>Chiens disponibles :{{annonce.getAdoptableDogs()|length}}</p>
 						<p>Races disponibles :
-							{% for dog in annonce.dogs %}
+							{% for dog in annonce.getAdoptableDogs() %}
 								{% set loopDog = loop %}
-								{% if not dog.isAdopted %}
-									{% for race in dog.races %}
-										{{race.name -}}
-										{%- if not loop.last or not loopDog.last %},
-										{% endif %}
-									{% endfor %}
-								{% endif %}
+								{% for race in dog.races %}
+									{{race.name -}}
+									{%- if not loop.last or not loopDog.last %},
+									{% endif %}
+								{% endfor %}
 							{% endfor %}
 						</p>
 					</div>
