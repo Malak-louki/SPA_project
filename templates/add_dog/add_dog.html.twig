@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Formulaire chien
+{% endblock %}
+
+{% block body %}
+<div class="container mt-3 mb-3">
+<h1>Formulaire chien</h1>
+{{form_start(form)}}
+
+<div class="row">
+<div class="col-md-6 col-sm-12 mt-5 mb-5">
+{{form_widget(form)}}
+<button type="submit" class="btn btn-warning m-5 ">Valider</button>
+</div>
+</div>
+{{form_end(form)}}
+</div>
+{% endblock %}

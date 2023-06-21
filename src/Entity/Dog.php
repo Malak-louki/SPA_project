@@ -32,7 +32,7 @@ class Dog
     protected ?string $description = null;
 
     #[ORM\Column]
-    protected ?bool $isAdopted = null;
+    protected ?bool $isAdopted = false;
 
     #[ORM\ManyToOne(inversedBy: 'dogs')]
     #[ORM\JoinColumn(nullable: false)]
