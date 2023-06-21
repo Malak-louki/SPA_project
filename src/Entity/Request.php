@@ -39,6 +39,7 @@ class Request
     {
         $this->conversations = new ArrayCollection();
         $this->dogs = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

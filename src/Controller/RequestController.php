@@ -26,9 +26,13 @@ class RequestController extends AbstractController
     {
         $firstRequest = new Request();
         $firstRequest->setAdopter($this->getUser());
+        $firstRequest->setAnnouncement($annonce);
+
+
 
         $form = $this->createForm(FirstRequestType::class, $firstRequest, [
             'method' => 'POST',
+            'announcement' => $annonce,
             // 'action' => $this->generateUrl('tag_new'), // des options du formulaire (optionnelles)
         ]);
 
