@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 {% block body%}
-	{{parent()}}
 	<h1>
 		Les dernières annonces :</h1>
 	{% block announcements %}
@@ -77,7 +76,6 @@
 												</td>
 												<td>
 													{{ announcer.countClosedAnnounces() }}
-													{# afficher le nombre d'annonces pourvues ? compter ? #}
 												</td>
 											{% endfor %}
 										</tr>
