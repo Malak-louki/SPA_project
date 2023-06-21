@@ -206,4 +206,13 @@ class Announcement
 
         return $adoptedDogs->count() == $this->getDogs()->count();
     }
+
+    public function getAdoptableDogs(): Collection
+    {
+        $adoptableDogs = $this->getDogs()->filter(function (Dog $dog) {
+            return !$dog->getIsAdopted();
+        });
+
+        return $adoptableDogs;
+    }
 }
