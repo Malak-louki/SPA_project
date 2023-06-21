@@ -2,8 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Announcement;
-use App\Entity\Dog;
 use App\Form\AnnouncementFiltreType;
 use App\Form\Filter\AnnouncementFilter;
 use App\Repository\AnnouncementRepository;

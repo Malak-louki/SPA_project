@@ -2,10 +2,8 @@
 
 namespace App\Form;
 
-use App\Entity\Dog;
 use App\Entity\Race;
 use App\Form\Filter\AnnouncementFilter;
-use App\Repository\DogRepository;
 use App\Repository\RaceRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -26,7 +24,6 @@ class AnnouncementFiltreType extends AbstractType
                 'label' => 'Toutes les annonces',
                 'required' => false,
             ])
-            // ->add('announcement')
             ->add('race', EntityType::class, [
                 'class' => Race::class,
                 'multiple' => false,
