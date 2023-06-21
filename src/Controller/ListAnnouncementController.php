@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Form\AnnouncementFiltreType;
+use App\Form\AnnouncementFilterType;
 use App\Form\Filter\AnnouncementFilter;
 use App\Repository\AnnouncementRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,13 +13,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ListAnnouncementController extends AbstractController
 {
-    #[Route('/list', name: 'app_list_announcement')]
+    #[Route('/liste', name: 'app_list_announcement')]
     public function listAnnouncement(Request $request, AnnouncementRepository $announcementRepository, EntityManagerInterface $entityManager): Response
     {
 
 
         $filter = new AnnouncementFilter();
-        $form = $this->createForm(AnnouncementFiltreType::class, $filter);
+        $form = $this->createForm(AnnouncementFilterType::class, $filter);
         $form->handleRequest($request);
 
         $annonces = $announcementRepository->groupByAnnouncement($filter);
