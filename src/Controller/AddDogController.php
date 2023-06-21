@@ -13,8 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AddDogController extends AbstractController
 {
-    #[Route('/add/dog', name: 'app_add_dog')]
-    #[Route('/modify/dog/{id}', name: 'app_modify_dog')]
+    #[Route('/ajout/chien', name: 'app_ajout_dog')]
+    #[Route('/modifier/chien/{id}', name: 'app_modifier_chien')]
     public function new(Request $request, EntityManagerInterface $em, AnnouncementRepository $announcementRepository, ?Dog $dog = null): Response
     {
         if (is_null($dog)) {
