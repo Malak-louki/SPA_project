@@ -20,31 +20,31 @@ class ImageFixtures extends Fixture implements DependentFixtureInterface
 
         $images = [
             (new Image())
-                ->setPath("img/kim.jpg")
+                ->setPath("kim.jpg")
                 ->setDog($dogs[2]),
             (new Image())
-                ->setPath("img/kim1.jpg")
+                ->setPath("kim1.jpg")
                 ->setDog($dogs[2]),
             (new Image())
-                ->setPath("img/cocaineDog.jpg")
+                ->setPath("cocaineDog.jpg")
                 ->setDog($dogs[1]),
             (new Image())
-                ->setPath("img/cocaineDog1.jpg")
+                ->setPath("cocaineDog1.jpg")
                 ->setDog($dogs[1]),
             (new Image())
-                ->setPath("img/babyGolden.jpg")
+                ->setPath("babyGolden.jpg")
                 ->setDog($dogs[0]),
             (new Image())
-                ->setPath("img/babyGolden2.jpg")
+                ->setPath("babyGolden2.jpg")
                 ->setDog($dogs[0]),
             (new Image())
-                ->setPath("img/babyGolden3.jpg")
+                ->setPath("babyGolden3.jpg")
                 ->setDog($dogs[0]),
             (new Image())
-                ->setPath("img/defaultImage.jpg")
+                ->setPath("defaultImage.jpg")
                 ->setDog($dogs[3]),
             (new Image())
-                ->setPath("img/images.jpg")
+                ->setPath("images.jpg")
                 ->setDog($dogs[4]),
         ];
 

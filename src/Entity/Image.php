@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ImageRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Entity\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -24,7 +25,7 @@ class Image
     protected ?int $imageSize = null;
 
     #[Vich\UploadableField(mapping: 'dogs', fileNameProperty: 'path', size: 'imageSize')]
-    protected ?File $imageFile = null;
+    protected $imageFile = null;
 
     #[ORM\Column(nullable: true)]
     protected ?\DateTimeImmutable $updatedAt = null;
@@ -83,7 +84,7 @@ class Image
     /**
      * @return 
      */
-    public function getImageFile(): ?File
+    public function getImageFile()
     {
         return $this->imageFile;
     }
@@ -92,7 +93,7 @@ class Image
      * @param  $imageFile 
      * @return self
      */
-    public function setImageFile(?File $imageFile): self
+    public function setImageFile($imageFile): self
     {
         $this->imageFile = $imageFile;
         if (null !== $imageFile) {

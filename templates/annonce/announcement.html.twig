@@ -27,7 +27,7 @@
 				</div>
 				<div class="d-flex">
 					{% for image in dog.images %}
-						<img src="{{ asset(image.path) }}" alt="" class="me-5">
+						<img src="{{ vich_uploader_asset(image) }}" alt="" class="me-5">
 					{% endfor %}
 				</div>
 				<div class="d-flex"></div>

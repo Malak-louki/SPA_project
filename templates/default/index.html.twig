@@ -13,7 +13,7 @@
 								<div class="chiens d-flex flex-row">
 									{% for image in announcement.getDogsImages|slice(0, 3) %}
 										{# verif : if announcements.getDogsImages|length < 3 #}
-										<img src="{{image.path}}" alt="image de chien" class="w-25">
+										<img src="{{vich_uploader_asset(image)}}" alt="image de chien" class="w-25">
 									{% endfor %}
 								</div>
 								<h2 class="text-center">{{ announcement.title }}</h2>
