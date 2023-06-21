@@ -8,66 +8,84 @@
 			{% for announcement in announcements %}
 				{% if announcement.dogs|length != 0 %}
 					{% if not announcement.announcementClosed %}
-						<div class="d-flex flex-wrap">
-							<div class="my-5 p-3 col-5 bg-body-secondary">
-								<div class="chiens d-flex flex-row justify-content-evenly">
-									{% for image in announcement.getDogsImages|slice(0, 3) %}
-										<img src="{{vich_uploader_asset(image)}}" alt="image de chien" class="listImg">
-									{% endfor %}
-								</div>
-								<h2 class="text-center">{{ announcement.title }}</h2>
-								<h4>Nombre de chiens disponible :
-									{{ announcement.dogs|length }}
-								</h4>
-								<div class="races d-flex align-items-center">
-									<h4>Races :</h4>
-									{% for race in announcement.getDogsRaces %}
-										<p class="mx-3 my-0">
-											{{race.name}}
-										</p>
-									{% endfor %}
-								</div>
-								<div class="d-flex align-items-center justify-content-between">
-									<p>Dernière mise à jour :
-										{{ announcement.updatedAt|date("d/m/Y") }}
-									</p>
-									<a href="{{path('app_annonce',{id:announcement.id})}}" class="btn btn-warning w-25 m-auto">Consulter</a>
-								</div>
-							</div>
+						<div class="d-flex">
+							<div class="card w-50 m-auto  my-3 p-3">
+								<div class="chiens d-flex flex-row">
+									<div class="d-flex flex-wrap">
+										<div class="my-5 p-3 col-5 bg-body-secondary">
+											<div class="chiens d-flex flex-row justify-content-evenly">
+												{% for image in announcement.getDogsImages|slice(0, 3) %}
+													{# verif : if announcements.getDogsImages|length < 3 #}
+													<img src="{{image.path}}" alt="image de chien" class="w-25">
+													<img src="{{vich_uploader_asset(image)}}" alt="image de chien" class="listImg">
+												{% endfor %}
+											</div>
+											<h2 class="text-center">{{ announcement.title }}</h2>
+											<h3>Nombre de chiens disponible :
+												<h4>Nombre de chiens disponible :
+													{{ announcement.dogs|length }}
+												</h3>
+											</h4>
+											<div class="races d-flex align-items-center">
+												<h3>Races :</h3>
+												<h4>Races :</h4>
+												{% for race in announcement.getDogsRaces %}
+													<p class="mx-3 my-0">
+														{{race.name}}
+													</p>
+												{% endfor %}
+											</div>
+											<h3>Dernière mise à jour :
+												{{ announcement.updatedAt|date("d/m/Y") }}
+											</h3>
+											<a href="{{path('app_annonce',{id:announcement.id})}}" class="btn btn-warning w-25 m-auto">Consulter</a>
+											<div class="d-flex align-items-center justify-content-between">
+												<p>Dernière mise à jour :
+													{{ announcement.updatedAt|date("d/m/Y") }}
+												</p>
+												<a href="{{path('app_annonce',{id:announcement.id})}}" class="btn btn-warning w-25 m-auto">Consulter</a>
+											</div>
+										</div>
+									</div>
+								{% endif %}
+							{% endif %}
+						{% endfor %}
+						<div class="text-center">
+							<a href="{{path('app_list_announcement')}}" class="btn btn-warning">Voir liste des chiens</a>
 						</div>
-					{% endif %}
-				{% endif %}
-			{% endfor %}
-			<div class="text-center">
-				<a href="{{path('app_list_announcement')}}" class="btn btn-warning">Voir liste des chiens</a>
-			</div>
-		</section>
-		<section class="actifsEleveurs container">
-			<table class="table table-striped table-bordered">
-				<thead>
-					<tr>
-						<th scope="col">Noms éleveurs ou SPA</th>
-						<th scope="col">Nombre annonces encore disponible</th>
-						<th scope="col">Nombre annonces pourvues</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for announcer in announcers %}
-						<tr>
-							<td scope="row">
-								{{announcer.lastName}}
-							</td>
-							<td>
-								{{ announcer.announcements|length - announcer.countClosedAnnounces() }}
-							</td>
-							<td>
-								{{ announcer.countClosedAnnounces() }}
-								{# afficher le nombre d'annonces pourvues ? compter ? #}
-							</td>
-						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
-		</section>
-	{% endblock %}
-{% endblock %}
+					</section>
+					<section class="actifsEleveurs">
+						<table class="table">
+							<section class="actifsEleveurs container">
+								<table class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<th scope="col">Noms éleveurs ou SPA</th>
+											<th scope="col">Nombre annonces encore disponible</th>
+											<th scope="col">Nombre annonces pourvues</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for announcer in announcers %}
+											<tr>
+												<td scope="row">
+													{{announcer.email}}
+													{{announcer.lastName}}
+												</td>
+												<td>
+													{{ announcer.announcements|length - announcer.countClosedAnnounces() }}
+												</td>
+												<td>
+													{{ announcer.countClosedAnnounces() }}
+													{# afficher le nombre d'annonces pourvues ? compter ? #}
+												</td>
+											{% endfor %}
+										</tr>
+									</tbody>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</section>
+			{% endblock %}
+		{% endblock %}
