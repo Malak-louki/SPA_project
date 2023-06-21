@@ -10,7 +10,7 @@
 				<article class="my-5 p-3 col-5 bg-body-secondary">
 					<div class="text-center">
 						{% for image in annonce.getDogsImages(true)|slice(0, 3) %}
-							<img src="{{ asset(image.path) }}" alt="" class="listImg">
+							<img src="{{ vich_uploader_asset(image) }}" alt="" class="listImg">
 						{% endfor %}
 					</div>
 					<h1 class="text-center">{{annonce.title}}</h1>
