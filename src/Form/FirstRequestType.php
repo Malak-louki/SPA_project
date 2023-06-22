@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Adopter;
 use App\Entity\Request;
 use App\Entity\Dog;
+use App\Form\AdopterType;
 use App\Entity\Conversation;
 use App\Form\ConversationType;
 use App\Repository\ConversationRepository;
@@ -35,11 +36,10 @@ class FirstRequestType extends AbstractType
                         ->innerJoin('d.announcement', 'a')
                         ->andWhere('a.id = :announcement')
                         ->setParameter(':announcement', $announcement->getId());
+                    //ajouter seulement les chiens non adopted !!!!
                 }
             ])
-            // ->add('adopter', Adopter::class, [
-
-            // ])
+            ->add('adopter', Adopter::class)
             ->add('conversations', CollectionType::class, [
                 'entry_type' => ConversationType::class,
                 'entry_options' => ['label' => false],

@@ -12,33 +12,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 class RequestController extends AbstractController
 {
-    #[Route('/request', name: 'request_index')]
-    public function index(): Response
-    {
-        return $this->render('request/index.html.twig', [
-            'controller_name' => 'RequestController',
-        ]);
-    }
-
+    #[IsGranted('ROLE_ADOPTER')]
     #[Route('/adoptant/premier-contact/{id}', name: 'request_new', requirements: ["id" => "\d+"])]
     public function new(
         HttpRequest $request,
         Announcement $annonce,
-        RequestRepository $requestRepository,
-        ?Request $firstRequest = null
+        RequestRepository $requestRepository
     ): Response {
 
-        if (is_null($firstRequest)) {
-            $firstRequest = new Request();
-            $firstRequest->setAdopter($this->getUser());
-            $firstRequest->setAnnouncement($annonce);
+        $firstRequest = new Request();
+        $firstRequest->setAdopter($this->getUser());
+        $firstRequest->setAnnouncement($annonce);
 
-            $conversation = new Conversation();
-            $firstRequest->addConversation($conversation);
-        }
+        $conversation = (new Conversation())
+            ->setIsAnnouncer(false);
+        $firstRequest->addConversation($conversation);
+
 
         $form = $this->createForm(FirstRequestType::class, $firstRequest, [
             'method' => 'POST',
@@ -51,7 +44,7 @@ class RequestController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $requestRepository->save($firstRequest, true);
             $this->addFlash('success', 'Votre message a été envoyé.');
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('app_annonce', ['id' => $annonce->getId()]);
         }
 
 
