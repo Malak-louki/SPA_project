@@ -215,4 +215,13 @@ class Announcement
 
         return $adoptableDogs;
     }
+
+    public function getNotAdoptableDogs(): Collection
+    {
+        $adoptableDogs = $this->getDogs()->filter(function (Dog $dog) {
+            return $dog->getIsAdopted();
+        });
+
+        return $adoptableDogs;
+    }
 }
