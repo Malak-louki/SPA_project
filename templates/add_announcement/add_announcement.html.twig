@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+	<script defer src="{{ asset('js/collection.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+	{{ form_start(form) }}
+	<div class="container">
+		<div>
+			{{ form_row(form.title) }}
+		</div>
+		<div>
+			{{ form_row(form.generalInformation) }}
+		</div>
+		<h3>{{form_label(form.dogs)}}</h3>
+		<ul class="dogs list-unstyled" data-index="{{ form.dogs|length > 0 ? form.dogs|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.dogs.vars.prototype)|e('html_attr') }}" data-collection-holder>
+			{% for dogForm in form.dogs %}
+				<li>
+					{{form_widget(form)}}
+				</li>
+			{% endfor %}
+		</ul>
+
+	</div>
+	<div class="text-center">
+		<button type="button" class="add_item_link btn btn-success" data-collection-holder-class="dogs">Ajouter un chien</button>
+		<button type="submit" class="btn btn-warning">Valider</button>
+	</div>
+</div>
+{{ form_end(form) }}{% endblock %}

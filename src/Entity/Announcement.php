@@ -29,7 +29,7 @@ class Announcement
     #[ORM\JoinColumn(nullable: false)]
     protected ?Announcer $announcer = null;
 
-    #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Dog::class)]
+    #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Dog::class, cascade: ['persist', 'remove'])]
     protected Collection $dogs;
 
     #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Request::class)]
@@ -42,6 +42,8 @@ class Announcement
     {
         $this->dogs = new ArrayCollection();
         $this->requests = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int
