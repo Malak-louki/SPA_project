@@ -214,7 +214,6 @@ class Announcement
     /**
      * @return Collection<int, Dog> 
      */
-
     public function getAdoptableDogs(): Collection
     {
         $adoptableDogs = $this->getDogs()->filter(function (Dog $dog) {
@@ -222,6 +221,7 @@ class Announcement
         });
 
         return $adoptableDogs;
+
     }
 
     /**
