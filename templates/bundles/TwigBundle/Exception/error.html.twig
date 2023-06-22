@@ -1,0 +1,12 @@
+{# templates/bundles/TwigBundle/Exception/error.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Oups ! {% endblock %}
+
+{% block body %}
+    <h1>Oups ! Quelque chose s'est mal passée. </h1>
+
+    <p>
+        Vous pouvez retourner sur la <a href="{{ path('home') }}">page d'accueil</a>.
+    </p>
+{% endblock %}
