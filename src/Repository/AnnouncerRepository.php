@@ -40,36 +40,36 @@ class AnnouncerRepository extends ServiceEntityRepository
     }
 
     //    /**
-//     * @return Announcer[] Returns an array of Announcer objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //     * @return Announcer[] Returns an array of Announcer objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('a.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
     public function findForHome(): array
     {
         return $this->createQueryBuilder('u')
             ->leftJoin('u.announcements', 'a')
-            ->orderBy("a.updatedAt", "DESC")
+            ->orderBy('a.updatedAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
 
     //    public function findOneBySomeField($value): ?Announcer
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

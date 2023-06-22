@@ -39,8 +39,6 @@ class DogRepository extends ServiceEntityRepository
         }
     }
 
-
-
     /**
      * @return Dog[] Returns an array of Dog objects
      */
@@ -70,12 +68,12 @@ class DogRepository extends ServiceEntityRepository
     // }
 
     //    public function findOneBySomeField($value): ?Dog
-//    {
-//        return $this->createQueryBuilder('d')
-//            ->andWhere('d.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    {
+    //        return $this->createQueryBuilder('d')
+    //            ->andWhere('d.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

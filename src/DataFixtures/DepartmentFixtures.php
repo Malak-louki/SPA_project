@@ -15,16 +15,16 @@ class DepartmentFixtures extends Fixture
     {
         $this->decoder = $decoder;
     }
+
     public function load(ObjectManager $manager): void
     {
-        $departments = $this->decoder->decode(file_get_contents(__DIR__ . "/../../ressources/departements-france.csv"), 'csv');
+        $departments = $this->decoder->decode(file_get_contents(__DIR__.'/../../ressources/departements-france.csv'), 'csv');
 
         foreach ($departments as $department) {
             $dept = (new Department())
-                ->setName($department["nom_departement"])
-                ->setDepartmentCode($department["code_departement"]);
+                ->setName($department['nom_departement'])
+                ->setDepartmentCode($department['code_departement']);
             $manager->persist($dept);
-
         }
 
         $manager->flush();

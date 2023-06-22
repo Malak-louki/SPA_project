@@ -47,6 +47,7 @@ class Announcer extends User
 
         return $this;
     }
+
     /**
      * @see UserInterface
      */

@@ -7,15 +7,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Validator\Constraints\Blank;
-use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Email;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
-#[ORM\InheritanceType("JOINED")]
-#[ORM\DiscriminatorColumn(name: "discr", type: "string")]
-#[ORM\DiscriminatorMap(["adopter" => Adopter::class, "admin" => Admin::class, "announcer" => Announcer::class])]
+#[ORM\InheritanceType('JOINED')]
+#[ORM\DiscriminatorColumn(name: 'discr', type: 'string')]
+#[ORM\DiscriminatorMap(['adopter' => Adopter::class, 'admin' => Admin::class, 'announcer' => Announcer::class])]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -34,7 +33,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     #[ORM\Column]
     protected ?string $password = null;
-
 
     #[Assert\Length(min: 8)]
     protected ?string $plainPassword = null;
@@ -113,6 +111,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPlainPassword(?string $plainPassword): self
     {
         $this->plainPassword = $plainPassword;
+
         return $this;
     }
 

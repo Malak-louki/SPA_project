@@ -16,8 +16,6 @@ class ListAnnouncementController extends AbstractController
     #[Route('/liste', name: 'app_list_announcement')]
     public function listAnnouncement(Request $request, AnnouncementRepository $announcementRepository, EntityManagerInterface $entityManager): Response
     {
-
-
         $filter = new AnnouncementFilter();
         $form = $this->createForm(AnnouncementFilterType::class, $filter);
         $form->handleRequest($request);

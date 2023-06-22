@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Length;
 
 #[ORM\Entity(repositoryClass: AnnouncementRepository::class)]
 class Announcement
@@ -142,6 +141,7 @@ class Announcement
             $this->requests->add($request);
             $request->setAnnouncement($this);
         }
+
         return $this;
     }
 
@@ -153,6 +153,7 @@ class Announcement
                 $request->setAnnouncement(null);
             }
         }
+
         return $this;
     }
 
@@ -164,6 +165,7 @@ class Announcement
     public function setGeneralInformation(?string $generalInformation): self
     {
         $this->generalInformation = $generalInformation;
+
         return $this;
     }
 
@@ -173,14 +175,16 @@ class Announcement
         $images = [];
 
         foreach ($this->getDogs() as $dog) {
-            if ($onlyNotAdopted === false || !$dog->getIsAdopted()) {
+            if (false === $onlyNotAdopted || !$dog->getIsAdopted()) {
                 foreach ($dog->getImages() as $image) {
                     $images[] = $image;
                 }
             }
         }
+
         return $images;
     }
+
     public function getDogsRaces(): array
     {
         $races = [];
@@ -196,7 +200,7 @@ class Announcement
 
     public function isAnnouncementClosed(): bool
     {
-        if ($this->getDogs()->count() == 0) {
+        if (0 == $this->getDogs()->count()) {
             return false;
         }
 
