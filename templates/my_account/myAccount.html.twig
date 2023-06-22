@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+<div class="container">
+<h1> Compte de : {{user.firstName}}</h1>
+<h3>Suivie de demandes</h3>
+<div class="d-felx">
+<h4>Titre d l'annonce {{user.requests|length}} </h4>
+
+{{form_start(form)}}
+
+{{form_widget(form)}}
+<button type="submit" class="btn btn-warning m-5 ">Valider</button>
+
+{{form_end(form)}}
+</div>
+{% endblock %}
