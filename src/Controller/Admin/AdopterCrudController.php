@@ -36,7 +36,6 @@ class AdopterCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-
         return [
             IdField::new('id')->setFormTypeOption('disabled', 'disabled'),
             TextField::new('firstName', "Prénom"),

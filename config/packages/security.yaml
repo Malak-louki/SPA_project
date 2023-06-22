@@ -32,6 +32,8 @@ security:
     # Note: Only the *first* access control that matches will be used
   access_control:
     - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/adoptant, roles: ROLE_ADOPTER }
+    - { path: ^/annonceur, roles: ROLE_ANNOUNCER }
       # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
