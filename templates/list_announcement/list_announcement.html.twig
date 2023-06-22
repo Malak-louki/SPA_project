@@ -18,6 +18,11 @@
 		<div class="d-flex flex-wrap justify-content-between">
 			{% for annonce in annonces %}
 				<article class="my-5 p-3 col-5 bg-body-secondary">
+					<div>
+						{% if annonce.getAdoptableDogs|length == 0 and annonce.dogs|length > 0 %}
+							<p class="btn btn-warning pe-none">Pourvue</p>
+						{% endif %}
+					</div>
 					<div class="text-center">
 						{% for image in annonce.getDogsImages(true)|slice(0, 3) %}
 							<img src="{{ vich_uploader_asset(image) }}" alt="" class="listImg">
