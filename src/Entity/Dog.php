@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\DogRepository;
+use AssertionError;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: DogRepository::class)]
 class Dog
@@ -38,7 +40,8 @@ class Dog
     #[ORM\JoinColumn(nullable: false)]
     protected ?Announcement $announcement = null;
 
-    #[ORM\OneToMany(mappedBy: 'dog', targetEntity: Image::class)]
+    #[ORM\OneToMany(mappedBy: 'dog', targetEntity: Image::class, cascade: ['persist', 'remove'])]
+    #[Assert\Count(min: 1)]
     protected Collection $images;
 
     #[ORM\ManyToMany(targetEntity: Race::class, inversedBy: 'dogs')]

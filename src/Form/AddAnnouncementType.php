@@ -40,6 +40,7 @@ class AddAnnouncementType extends AbstractType
                         'label' => false,
                     ],
                     'label' => 'Chien',
+                    'prototype_name' => '__dogs__',
                     'allow_add' => true,
                     'allow_delete' => true,
                     'by_reference' => false,

@@ -5,8 +5,11 @@ const addFormToCollection = (e) => {
 
   const item = document.createElement("li");
 
+  let protoName = collectionHolder.dataset.prototypeName;
+
+  var regex = new RegExp(protoName, "g");
   item.innerHTML = collectionHolder.dataset.prototype.replace(
-    /__name__/g,
+    regex,
     collectionHolder.dataset.index
   );
 
@@ -24,6 +27,7 @@ const addChildFormDeleteLink = (item) => {
   removeFormButton.innerText = "Supprimer";
   removeFormButton.classList.add("btn");
   removeFormButton.classList.add("btn-danger");
+  removeFormButton.classList.add("mt-5");
 
   item.prepend(removeFormButton);
 
@@ -35,12 +39,12 @@ const addChildFormDeleteLink = (item) => {
 };
 
 const initEvents = function () {
-  document.querySelectorAll(".add_item_link").forEach((btn) => {
-    btn.addEventListener("click", addFormToCollection);
-  });
-
   document.querySelectorAll("[data-collection-element]").forEach((element) => {
     addChildFormDeleteLink(element);
+  });
+  document.querySelectorAll(".add_item_link").forEach((btn) => {
+    btn.removeEventListener("click", addFormToCollection);
+    btn.addEventListener("click", addFormToCollection);
   });
 };
 

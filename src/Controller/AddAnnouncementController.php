@@ -17,15 +17,15 @@ class AddAnnouncementController extends AbstractController
 {
     #[IsGranted('ROLE_ANNOUNCER')]
     #[Route('/ajout/annonce', name: 'app_add_announcement')]
+    #[Route('/ajout/annonce/{id}', name: 'app_modifier_announcement')]
     public function addAnnouncement(Request $request, AnnouncementRepository $announcementRepository, ?Announcement $announcement): Response
     {
         $user = $this->getUser();
 
         if (is_null($announcement)) {
             $announcement = new Announcement();
-            $dog = new Dog();
-            $announcement->addDog($dog);
         }
+
         $announcement->setAnnouncer($user);
         $form = $this->createForm(AddAnnouncementType::class, $announcement);
         $form->handleRequest($request);
@@ -34,10 +34,14 @@ class AddAnnouncementController extends AbstractController
             // On enregistre
             $announcement->setUpdatedAt(new \DateTimeImmutable());
             $announcementRepository->save($announcement, true);
+            return $this->redirectToRoute('app_list_announcement');
         }
 
+        $annonces = $announcementRepository->findAll();
+
         return $this->render('add_announcement/add_announcement.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'annonces' => $annonces,
         ]);
     }
 
