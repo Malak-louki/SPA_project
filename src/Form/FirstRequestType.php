@@ -6,27 +6,25 @@ use App\Entity\Adopter;
 use App\Entity\Request;
 use App\Entity\Dog;
 use App\Form\AdopterType;
-use App\Entity\Conversation;
 use App\Form\ConversationType;
-use App\Repository\ConversationRepository;
 use App\Repository\DogRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class FirstRequestType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $announcement = $options['announcement']; // Sans le configureOptions on récpère les données avec $options['data']->getAnnouncement();
+        $announcement = $options['announcement']; // Sans le configureOptions on récupère les données avec $options['data']->getAnnouncement();
 
-        // $conversation = $options['data']->getConversation();
         $builder
             ->add('dogs', EntityType::class, [
                 'class' => Dog::class,
+                'label' => false,
                 'multiple' => true,
                 'expanded' => true,
                 'by_reference' => false,
@@ -34,20 +32,28 @@ class FirstRequestType extends AbstractType
                     return $dogRepository
                         ->createQueryBuilder('d')
                         ->innerJoin('d.announcement', 'a')
-                        ->andWhere('a.id = :announcement')
-                        ->setParameter(':announcement', $announcement->getId());
-                    //ajouter seulement les chiens non adopted !!!!
+                        ->where('a.id = :announcement')
+                        ->setParameter(':announcement', $announcement->getId())
+                        ->andWhere('d.isAdopted = :is_adopted')
+                        ->setParameter(':is_adopted', 0);
                 }
             ])
-            ->add('adopter', Adopter::class)
+            ->add('adopter', AdopterType::class, [
+                'label' => false,
+                'required' => true,
+            ])
             ->add('conversations', CollectionType::class, [
                 'entry_type' => ConversationType::class,
                 'entry_options' => ['label' => false],
-                'label' => 'Message'
-                // 'query_builder' => function (ConversationRepository $conversationRepository) use ($conversation) {
-                //     return $conversationRepository
-                //         ->createQueryBuilder('conv.conversations');
-                // }
+                'label' => false,
+                'constraints' => [
+                    new Assert\Length([
+                        'min' => 200,
+                        'minMessage' => 'Votre message doit contenir au moins {{ limit }} caractères',
+                        'max' => 12000,
+                        'maxMessage' => 'Votre message doit contenir au maximum {{ limit }} caractères',
+                    ]),
+                ],
             ])
         ;
     }

@@ -20,7 +20,7 @@ class AdopterType extends AbstractType
                 'firstName',
                 TextType::class,
                 [
-                    'required' => false,
+                    'required' => true,
                     'label' => 'Prénom',
                 ]
             )
@@ -28,7 +28,7 @@ class AdopterType extends AbstractType
                 'lastName',
                 TextType::class,
                 [
-                    'required' => false,
+                    'required' => true,
                     'label' => 'Nom',
                 ]
             )
@@ -42,13 +42,13 @@ class AdopterType extends AbstractType
             ->add(
                 'city', TextType::class,
                 [
-                    'required' => false,
+                    'required' => true,
                     'label' => 'Ville',
                 ]
             )
             ->add('department', EntityType::class, [
                 'label' => 'Département',
-                'required' => false,
+                'required' => true,
                 'class' => Department::class,
                 'query_builder' => function (DepartmentRepository $er) {
                     return $er->createQueryBuilder('d')->orderBy('d.name', 'ASC');

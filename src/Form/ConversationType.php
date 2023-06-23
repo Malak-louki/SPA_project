@@ -17,20 +17,16 @@ class ConversationType extends AbstractType
     {
         $builder
             ->add('content', TextareaType::class, [
-                // 'mapped' => false,
-                'label' => false,
+                'mapped' => false,
+                'label' => 'Message',
                 'required' => true,
-                'constraints' => [
-                    new Assert\NotBlank([
-                        'message' => 'Entrez votre message',
-                    ]),
-                    new Assert\Length([
-                        'min' => 200,
-                        'minMessage' => 'Votre message doit contenir au moins {{ limit }} caractères',
-                        'max' => 12000,
-                        'maxMessage' => 'Votre message doit contenir au maximum {{ limit }} caractères',
-                    ]),
-                ],
+                'attr' => ['cols' => '60', 'rows' => '15'],
+                // 'constraints' => [
+                //     new Assert\Length([
+                //         'max' => 12000,
+                //         'maxMessage' => 'Votre message doit contenir au maximum {{ limit }} caractères',
+                //     ]),
+                // ],
             ])
         ;
     }

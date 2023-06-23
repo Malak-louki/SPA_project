@@ -41,11 +41,14 @@ class AnnouncementRepository extends ServiceEntityRepository
         }
     }
 
+<<<<<<< HEAD
     // public function findOneBy()
     // {
     //     $this->getEntityManager()->;
     // }
 
+=======
+>>>>>>> 733b0ad (Gestion sécurité accès premier contact)
     public function groupByAnnouncement(AnnouncementFilter $filter): array
     {
         $qb = $this->createQueryBuilder('a')
@@ -82,9 +85,15 @@ class AnnouncementRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+<<<<<<< HEAD
     //    /**
     //     * @return Announcement[] Returns an array of Announcement objects
     //     */
+=======
+    /**
+     * @return Announcement[] Returns an array of Announcement objects
+     */
+>>>>>>> 733b0ad (Gestion sécurité accès premier contact)
     public function findForHome(): array
     {
         return $this->createQueryBuilder('a')

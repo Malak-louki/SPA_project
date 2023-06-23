@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Adopter;
 use App\Entity\Announcement;
 use App\Entity\Conversation;
 use App\Entity\Request;
@@ -20,13 +21,21 @@ class RequestController extends AbstractController
     #[Route('/adoptant/premier-contact/{id}', name: 'request_new', requirements: ["id" => "\d+"])]
     public function new(
         HttpRequest $request,
-        Announcement $annonce,
+        Announcement $annoucement,
         RequestRepository $requestRepository
     ): Response {
 
+        /** @var Adopter */
+        $user = $this->getUser();
+
+        if ($requestRepository->isFirstRequest($user, $annoucement)) {
+            $this->addFlash('warning', "Vous avez déjà postulé à cette annonce");
+            return $this->redirectToRoute('app_annonce', ['id' => $annoucement->getId()]);
+        }
+
         $firstRequest = new Request();
         $firstRequest->setAdopter($this->getUser());
-        $firstRequest->setAnnouncement($annonce);
+        $firstRequest->setAnnouncement($annoucement);
 
         $conversation = (new Conversation())
             ->setIsAnnouncer(false);
@@ -35,8 +44,7 @@ class RequestController extends AbstractController
 
         $form = $this->createForm(FirstRequestType::class, $firstRequest, [
             'method' => 'POST',
-            'announcement' => $annonce,
-            // 'action' => $this->generateUrl('tag_new'), // des options du formulaire (optionnelles)
+            'announcement' => $annoucement,
         ]);
 
         $form->handleRequest($request);
@@ -44,13 +52,13 @@ class RequestController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $requestRepository->save($firstRequest, true);
             $this->addFlash('success', 'Votre message a été envoyé.');
-            return $this->redirectToRoute('app_annonce', ['id' => $annonce->getId()]);
+            return $this->redirectToRoute('app_annonce', ['id' => $annoucement->getId()]);
         }
 
 
         return $this->render('request/new.html.twig', [
             'form' => $form->createView(),
-            'annonce' => $annonce,
+            'annoucement' => $annoucement,
         ]);
     }
 }
