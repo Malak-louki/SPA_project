@@ -14,12 +14,14 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class MyAccountController extends AbstractController
 {
     #[IsGranted('ROLE_ADOPTER')]
-    #[Route('/my_account', name: 'app_my_account')]
-    public function new(Request $request, EntityManagerInterface $em): Response
+    #[Route('/adoptan/mon-compte', name: 'my_account_view')]
+    public function view(Request $request, EntityManagerInterface $em): Response
     {
         $user = $this->getUser();
         $form = $this->createForm(UpdateUserFormType::class, $user);
         $form->handleRequest($request);
+
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em->persist($user);

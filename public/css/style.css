@@ -1,5 +1,5 @@
 a {
-    color: rgb(52, 52, 52);
+  color: rgb(52, 52, 52);
 }
 
 .listImg:first-child {
@@ -15,4 +15,9 @@ a {
 img {
     max-height: 200px;
     aspect-ratio: 1/1;
+}
+
+
+#account {
+  background-color: rgba(184, 184, 184, 0.103);
 }

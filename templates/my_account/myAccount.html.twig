@@ -6,14 +6,42 @@
 <div class="container">
 <h1> Compte de : {{user.firstName}}</h1>
 <h3>Suivie de demandes</h3>
-<div class="d-felx">
-<h4>Titre d l'annonce {{user.requests|length}} </h4>
+<div class="d-felx" >
+
+{% for request in user.requests %}
+<div class="row gap-3 ">
+    <div id="account" class="row gap-3 mb-5 p-4 ">
+<h4>Titre d l'annonce {{request.announcement.title}} </h4>
+
+
+    {% for dog in request.dogs %}
+
+        <p>Chien choisi :  <b> {{dog.name}}</b></p>
+        {% for race in dog.races %}
+            <p>race(s) :  <b> {{race.name}}</b></p>
+        {% endfor %}
+
+    {% endfor %}
+        <a href="{{path('app_annonce',{id:request.announcement.id})}}" class="btn btn-warning w-25 m-auto">Voir l'annonce</a>
+        <a href="#"></a>
+        {% for conversation in request.conversations %}
+    
+            <P> discussion :  {{conversation.content|nl2br}} </P>
+    </div>
+</div>
+        {% endfor %}
+    {% endfor %}
+
 
 {{form_start(form)}}
 
-{{form_widget(form)}}
-<button type="submit" class="btn btn-warning m-5 ">Valider</button>
+    <div class="row mb-5 p-4">
+        {{form_widget(form)}}
 
-{{form_end(form)}}
+        <button type="submit" class="btn btn-warning m-auto w-25  ">Valider</button>
+
+        {{form_end(form)}}
+    </div>
+    
 </div>
 {% endblock %}
