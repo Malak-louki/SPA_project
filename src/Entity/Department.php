@@ -90,6 +90,6 @@ class Department
 
     public function __toString()
     {
-        return $this->getName() . ' (' . $this->getDepartmentCode() . ')';
+        return $this->getName().' ('.$this->getDepartmentCode().')';
     }
 }

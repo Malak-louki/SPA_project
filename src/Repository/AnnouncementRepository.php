@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Announcement;
+use App\Entity\Race;
 use App\Form\Filter\AnnouncementFilter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -40,7 +41,6 @@ class AnnouncementRepository extends ServiceEntityRepository
         }
     }
 
-
     // public function findOneBy()
     // {
     //     $this->getEntityManager()->;
@@ -69,7 +69,7 @@ class AnnouncementRepository extends ServiceEntityRepository
             ;
         }
 
-        if ($filter->getRace()) {
+        if ($filter->getRace() instanceof Race) {
             $qb
                 ->leftJoin('d.races', 'r')
                 ->andWhere('r = :race')
@@ -81,9 +81,10 @@ class AnnouncementRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
     //    /**
-//     * @return Announcement[] Returns an array of Announcement objects
-//     */
+    //     * @return Announcement[] Returns an array of Announcement objects
+    //     */
     public function findForHome(): array
     {
         return $this->createQueryBuilder('a')
@@ -96,12 +97,12 @@ class AnnouncementRepository extends ServiceEntityRepository
     }
 
     //    public function findOneBySomeField($value): ?Announcement
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

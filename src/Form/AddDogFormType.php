@@ -7,8 +7,6 @@ use App\Entity\Race;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,32 +20,32 @@ class AddDogFormType extends AbstractType
                 'name',
                 null,
                 [
-                    "label" => 'nom',
+                    'label' => 'nom',
                     'required' => true,
-                    "attr" => [
-                        "placeholder" => "Entrez le nom de votre chien",
-                    ]
+                    'attr' => [
+                        'placeholder' => 'Entrez le nom de votre chien',
+                    ],
                 ]
             )
             ->add(
                 'isLof', CheckboxType::class,
                 [
-                    "required" => false
+                    'required' => false,
                 ]
             )
             ->add('background', TextType::class)
             ->add(
                 'isPetFriendly', CheckboxType::class,
                 [
-                    "required" => false
+                    'required' => false,
                 ]
             )
             ->add('description')
             ->add(
                 'isAdopted', CheckboxType::class,
                 [
-                    "required" => false,
-                    "disabled" => is_null($options['data']->getId()),
+                    'required' => false,
+                    'disabled' => is_null($options['data']->getId()),
                 ]
             )
             ->add(
@@ -59,9 +57,7 @@ class AddDogFormType extends AbstractType
                     'multiple' => true,
                     'expanded' => true,
                 ],
-
             );
-
     }
 
     public function configureOptions(OptionsResolver $resolver): void

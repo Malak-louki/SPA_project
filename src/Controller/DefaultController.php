@@ -5,8 +5,6 @@ namespace App\Controller;
 use App\Repository\AnnouncementRepository;
 // use App\Repository\ImageRepository;
 use App\Repository\AnnouncerRepository;
-use App\Repository\ImageRepository;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

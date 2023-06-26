@@ -15,10 +15,9 @@ class AddDogController extends AbstractController
 {
     #[Route('/ajout/chien', name: 'app_ajout_dog')]
     #[Route('/modifier/chien/{id}', name: 'app_modifier_chien')]
-    public function new(Request $request, EntityManagerInterface $em, AnnouncementRepository $announcementRepository, ?Dog $dog = null): Response
+    public function new(Request $request, EntityManagerInterface $em, AnnouncementRepository $announcementRepository, Dog $dog = null): Response
     {
         if (is_null($dog)) {
-
             $announcement = current($announcementRepository->findAll());
             $dog = new Dog();
             $dog->setAnnouncement($announcement);

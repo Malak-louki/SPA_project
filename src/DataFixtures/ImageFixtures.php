@@ -5,8 +5,8 @@ namespace App\DataFixtures;
 use App\Entity\Image;
 use App\Repository\DogRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\Persistence\ObjectManager;
 
 class ImageFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -20,31 +20,31 @@ class ImageFixtures extends Fixture implements DependentFixtureInterface
 
         $images = [
             (new Image())
-                ->setPath("kim.jpg")
+                ->setPath('kim.jpg')
                 ->setDog($dogs[2]),
             (new Image())
-                ->setPath("kim1.jpg")
+                ->setPath('kim1.jpg')
                 ->setDog($dogs[2]),
             (new Image())
-                ->setPath("cocaineDog.jpg")
+                ->setPath('cocaineDog.jpg')
                 ->setDog($dogs[1]),
             (new Image())
-                ->setPath("cocaineDog1.jpg")
+                ->setPath('cocaineDog1.jpg')
                 ->setDog($dogs[1]),
             (new Image())
-                ->setPath("babyGolden.jpg")
+                ->setPath('babyGolden.jpg')
                 ->setDog($dogs[0]),
             (new Image())
-                ->setPath("babyGolden2.jpg")
+                ->setPath('babyGolden2.jpg')
                 ->setDog($dogs[0]),
             (new Image())
-                ->setPath("babyGolden3.jpg")
+                ->setPath('babyGolden3.jpg')
                 ->setDog($dogs[0]),
             (new Image())
-                ->setPath("defaultImage.jpg")
+                ->setPath('defaultImage.jpg')
                 ->setDog($dogs[3]),
             (new Image())
-                ->setPath("images.jpg")
+                ->setPath('images.jpg')
                 ->setDog($dogs[4]),
         ];
 

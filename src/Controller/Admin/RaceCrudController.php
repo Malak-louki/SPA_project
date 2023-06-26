@@ -27,7 +27,7 @@ class RaceCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->setFormTypeOption('disabled', 'disabled'),
-            TextField::new('name', "Nom des races"),
+            TextField::new('name', 'Nom des races'),
         ];
     }
 }

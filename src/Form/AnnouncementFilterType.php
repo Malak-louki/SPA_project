@@ -34,7 +34,7 @@ class AnnouncementFilterType extends AbstractType
                     return $raceRepository
                         ->createQueryBuilder('r')
                         ->orderBy('r.name', 'ASC');
-                }
+                },
             ]);
     }
 

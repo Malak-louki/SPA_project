@@ -7,9 +7,9 @@ use EasyCorp\Bundle\EasyAdminBundle\Config\Action;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 
 class AdopterCrudController extends AbstractCrudController
 {
@@ -38,14 +38,13 @@ class AdopterCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->setFormTypeOption('disabled', 'disabled'),
-            TextField::new('firstName', "Prénom"),
-            TextField::new('lastName', "Nom"),
-            TextField::new('tel', "Téléphone"),
-            TextField::new('city', "Ville"),
-            AssociationField::new('department', "Département"),
-            TextField::new('email', "e-Mail"),
-            TextField::new('plainPassword', "Nouveau mot de passe")->onlyOnForms(),
+            TextField::new('firstName', 'Prénom'),
+            TextField::new('lastName', 'Nom'),
+            TextField::new('tel', 'Téléphone'),
+            TextField::new('city', 'Ville'),
+            AssociationField::new('department', 'Département'),
+            TextField::new('email', 'e-Mail'),
+            TextField::new('plainPassword', 'Nouveau mot de passe')->onlyOnForms(),
         ];
     }
-
 }
