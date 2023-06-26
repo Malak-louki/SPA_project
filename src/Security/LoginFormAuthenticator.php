@@ -3,6 +3,7 @@
 namespace App\Security;
 
 use App\Entity\Admin;
+use App\Entity\Announcer;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -50,6 +51,9 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         $user = $token->getUser();
         if ($user instanceof Admin) {
             return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index'));
+        }
+        if ($user instanceof Announcer) {
+            return new RedirectResponse($this->urlGenerator->generate('announcer_announcement_management'));
         }
 
         // on peut rajouter des condition ici par ex si c'est un admin on le redirige directement sur la page admin et
