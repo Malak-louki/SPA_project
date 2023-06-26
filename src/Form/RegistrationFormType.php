@@ -26,7 +26,7 @@ class RegistrationFormType extends AbstractType
                 'email', EmailType::class,
                 [
                     'required' => true,
-                    'label' => 'Email*'
+                    'label' => 'Email*',
                 ]
             )
             ->add('agreeTerms', CheckboxType::class, [

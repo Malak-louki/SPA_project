@@ -2,18 +2,14 @@
 
 namespace App\Form;
 
-use App\Entity\Adopter;
-use App\Entity\Request;
 use App\Entity\Dog;
-use App\Form\AdopterType;
-use App\Form\ConversationType;
+use App\Entity\Request;
 use App\Repository\DogRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints as Assert;
 
 class FirstRequestType extends AbstractType
 {
@@ -36,7 +32,7 @@ class FirstRequestType extends AbstractType
                         ->setParameter(':announcement', $announcement->getId())
                         ->andWhere('d.isAdopted = :is_adopted')
                         ->setParameter(':is_adopted', 0);
-                }
+                },
             ])
             ->add('adopter', AdopterType::class, [
                 'label' => false,

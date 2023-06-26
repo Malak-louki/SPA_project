@@ -212,7 +212,7 @@ class Announcement
     }
 
     /**
-     * @return Collection<int, Dog> 
+     * @return Collection<int, Dog>
      */
     public function getAdoptableDogs(): Collection
     {
@@ -221,11 +221,10 @@ class Announcement
         });
 
         return $adoptableDogs;
-
     }
 
     /**
-     * @return Collection<int, Dog> 
+     * @return Collection<int, Dog>
      */
     public function getNotAdoptableDogs(): Collection
     {
@@ -239,6 +238,5 @@ class Announcement
     public function __toString()
     {
         return $this->getTitle();
-
     }
 }

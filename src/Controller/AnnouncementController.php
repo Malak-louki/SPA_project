@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AnnouncementController extends AbstractController
 {
-    #[Route('/annonce/{id}', name: 'app_annonce', requirements: ["id" => "\d+"])]
+    #[Route('/annonce/{id}', name: 'app_annonce', requirements: ['id' => "\d+"])]
     public function announcement(int $id, AnnouncementRepository $repository, RequestRepository $requestRepository): Response
     {
         $annonces = $repository->find($id);

@@ -90,5 +90,4 @@ class AnnouncementRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-
 }

@@ -52,8 +52,8 @@ class AnnouncementFixtures extends Fixture implements DependentFixtureInterface
         ];
 
         foreach ($announcements as $announcement) {
-            $dateTime = (clone $newDate)->modify('-' . mt_rand(0, 5) . 'day');
-            $updateTime = (clone $dateTime)->modify('+' . mt_rand(1, 5) . 'day');
+            $dateTime = (clone $newDate)->modify('-'.mt_rand(0, 5).'day');
+            $updateTime = (clone $dateTime)->modify('+'.mt_rand(1, 5).'day');
             $nb = mt_rand(0, count($announcers) - 1);
             $announcer = $announcers[$nb];
 
