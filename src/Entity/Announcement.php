@@ -238,7 +238,6 @@ class Announcement
 
         return $adoptableDogs;
     }
-
     public function __toString()
     {
         return $this->getTitle();

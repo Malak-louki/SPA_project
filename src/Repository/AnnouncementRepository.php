@@ -90,4 +90,21 @@ class AnnouncementRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
+
+    public function findForAnnouncerManagement(): array
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.')
+        ;
+    }
+
+    //    public function findOneBySomeField($value): ?Announcement
+    //    {
+    //        return $this->createQueryBuilder('a')
+    //            ->andWhere('a.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
