@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Announcement;
+use App\Entity\Announcer;
 use App\Form\AddAnnouncementType;
 use App\Repository\AnnouncementRepository;
-use App\Entity\Announcement;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,6 +19,7 @@ class AddAnnouncementController extends AbstractController
     #[Route('annonceur/modification/annonce/{id}', name: 'app_modifier_announcement')]
     public function addAnnouncement(Request $request, AnnouncementRepository $announcementRepository, ?Announcement $announcement): Response
     {
+        /** @var Announcer */
         $user = $this->getUser();
 
         if (is_null($announcement)) {
@@ -32,6 +34,7 @@ class AddAnnouncementController extends AbstractController
             // On enregistre
             $announcement->setUpdatedAt(new \DateTimeImmutable());
             $announcementRepository->save($announcement, true);
+
             return $this->redirectToRoute('app_list_announcement');
         }
 
@@ -42,5 +45,4 @@ class AddAnnouncementController extends AbstractController
             'annonces' => $annonces,
         ]);
     }
-
 }
