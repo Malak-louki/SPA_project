@@ -40,7 +40,7 @@ class Dog
     #[ORM\JoinColumn(nullable: false)]
     protected ?Announcement $announcement = null;
 
-    #[ORM\OneToMany(mappedBy: 'dog', targetEntity: Image::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'dog', targetEntity: Image::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     #[Assert\Count(min: 1)]
     protected Collection $images;
 

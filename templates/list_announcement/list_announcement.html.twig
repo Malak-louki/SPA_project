@@ -15,6 +15,9 @@
 
 	{{ form_end(form) }}
 	<section class="container">
+		{% if is_granted("ROLE_ANNOUNCER") %}
+			<a href="{{ path('app_add_announcement')}}" class="btn btn-warning">Ajoutez une annonce</a>
+		{% endif %}
 		<div class="d-flex flex-wrap justify-content-between">
 			{% for annonce in annonces %}
 				<article class="my-5 p-3 col-5 bg-body-secondary">

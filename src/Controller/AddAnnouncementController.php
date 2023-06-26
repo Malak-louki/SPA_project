@@ -2,9 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Dog;
 use App\Form\AddAnnouncementType;
-use App\Form\AddDogFormType;
 use App\Repository\AnnouncementRepository;
 use App\Entity\Announcement;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -16,8 +14,8 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class AddAnnouncementController extends AbstractController
 {
     #[IsGranted('ROLE_ANNOUNCER')]
-    #[Route('/ajout/annonce', name: 'app_add_announcement')]
-    #[Route('/ajout/annonce/{id}', name: 'app_modifier_announcement')]
+    #[Route('annonceur/ajout/annonce', name: 'app_add_announcement')]
+    #[Route('annonceur/modification/annonce/{id}', name: 'app_modifier_announcement')]
     public function addAnnouncement(Request $request, AnnouncementRepository $announcementRepository, ?Announcement $announcement): Response
     {
         $user = $this->getUser();
