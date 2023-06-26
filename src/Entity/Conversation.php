@@ -17,6 +17,7 @@ class Conversation
 
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank]
+    #[Assert\Length(max: 12000)]
     protected ?string $content = null;
 
     #[ORM\Column]

@@ -46,14 +46,6 @@ class FirstRequestType extends AbstractType
                 'entry_type' => ConversationType::class,
                 'entry_options' => ['label' => false],
                 'label' => false,
-                'constraints' => [
-                    new Assert\Length([
-                        'min' => 200,
-                        'minMessage' => 'Votre message doit contenir au moins {{ limit }} caractères',
-                        'max' => 12000,
-                        'maxMessage' => 'Votre message doit contenir au maximum {{ limit }} caractères',
-                    ]),
-                ],
             ])
         ;
     }
