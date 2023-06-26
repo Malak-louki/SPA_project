@@ -52,7 +52,6 @@ class AddDogFormType extends AbstractType
                 [
                     "required" => false,
                     "label" => "Est adopté",
-                    // "disabled" => is_null($options['data']->getId()),
                 ]
             )
             ->add(
