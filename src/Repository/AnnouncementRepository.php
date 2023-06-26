@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Announcement;
+use App\Entity\Race;
 use App\Form\Filter\AnnouncementFilter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -68,7 +69,7 @@ class AnnouncementRepository extends ServiceEntityRepository
             ;
         }
 
-        if ($filter->getRace()) {
+        if ($filter->getRace() instanceof Race) {
             $qb
                 ->leftJoin('d.races', 'r')
                 ->andWhere('r = :race')

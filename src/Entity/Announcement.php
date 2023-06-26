@@ -210,7 +210,9 @@ class Announcement
 
         return $adoptedDogs->count() == $this->getDogs()->count();
     }
-
+    /**
+     * @return Collection<int, Dog> 
+     */
     public function getAdoptableDogs(): Collection
     {
         $adoptableDogs = $this->getDogs()->filter(function (Dog $dog) {
@@ -220,6 +222,9 @@ class Announcement
         return $adoptableDogs;
     }
 
+    /**
+     * @return Collection<int, Dog> 
+     */
     public function getNotAdoptableDogs(): Collection
     {
         $adoptableDogs = $this->getDogs()->filter(function (Dog $dog) {
