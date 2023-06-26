@@ -44,7 +44,7 @@ class RequestRepository extends ServiceEntityRepository
     /**
      * @return Request[] Returns an array of Request objects
      */
-    public function isFirstRequest(Adopter $user, Announcement $announcement): array
+    public function getIsFirstRequest(Adopter $user, Announcement $announcement): array
     {
         return $this->createQueryBuilder('req')
             ->where('req.adopter = :user_id')
