@@ -71,7 +71,7 @@ class Dog
         return $this;
     }
 
-    public function isIsLof(): ?bool
+    public function getIsLof(): ?bool
     {
         return $this->isLof;
     }
