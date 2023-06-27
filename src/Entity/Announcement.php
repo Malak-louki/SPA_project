@@ -31,7 +31,6 @@ class Announcement
     protected ?Announcer $announcer = null;
 
     #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Dog::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
-
     #[Assert\Count(min: 0)]
     protected Collection $dogs;
 
@@ -239,7 +238,6 @@ class Announcement
 
         return $adoptableDogs;
     }
-
     public function __toString()
     {
         return $this->getTitle();
