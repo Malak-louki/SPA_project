@@ -22,55 +22,55 @@
 		<p>{{announcement.generalInformation}}</p>
 
 		{% for dog in dogs %}
-			{% for dog in announcement.dogs %}
-				<div class="shadow px-3 rounded">
-					<div class="d-flex justify-content-between mt-5 pt-2 align-items-center">
-						<h2 class="text-warning">{{ dog.name }}</h2>
-						{% if dog.isLof == false %}
-							<p class="btn btn-warning pe-none">Non L.O.F</p>
-						{% else %}
-							<p class="btn btn-warning pe-none">L.O.F</p>
-						{% endif %}
-						{% if dog.isAdopted == true %}
-							<p class="btn btn-warning pe-none">Déjà adopté</p>
-						{% endif %}
-					</div>
-					<div class="d-flex">
-						{% for image in dog.images %}
-							<img src="{{ vich_uploader_asset(image) }}" alt="" class="me-5">
-						{% endfor %}
-					</div>
-					<div class="d-flex"></div>
-					<div class="bg-light px-3 rounded mt-3  p-2">
-						<ul class="list-unstyled">
-							<li class="d-flex">
-								<p class="col-2">Race</p>
-								{% for race in dog.races %}
-									<p>{{race.name}}</p>
-								{% endfor %}
-							</li>
-							<li class="d-flex">
-								<p class="col-2">Accepte les autres animaux</p>
-								{% if dog.isPetFriendly == true %}
-									<p>Oui</p>
-								{% else %}
-									<p>Non</p>
-								{% endif %}
-							</li>
-							<li class="d-flex">
-								<p class="col-2">Antécédents</p>
-								<p>{{dog.background}}</p>
-							</li>
-							<li class="d-flex">
-								<p class="col-2">Description</p>
-								<p>{{dog.description}}</p>
-							</li>
-						</ul>
-					</div>
+			{# {% for dog in announcement.dogs %} #}
+			<div class="shadow px-3 rounded">
+				<div class="d-flex justify-content-between mt-5 pt-2 align-items-center">
+					<h2 class="text-warning">{{ dog.name }}</h2>
+					{% if dog.isLof == false %}
+						<p class="btn btn-warning pe-none">Non L.O.F</p>
+					{% else %}
+						<p class="btn btn-warning pe-none">L.O.F</p>
+					{% endif %}
+					{% if dog.isAdopted == true %}
+						<p class="btn btn-warning pe-none">Déjà adopté</p>
+					{% endif %}
+				</div>
+				<div class="d-flex">
+					{% for image in dog.images %}
+						<img src="{{ vich_uploader_asset(image) }}" alt="" class="me-5">
+					{% endfor %}
+				</div>
+				<div class="d-flex"></div>
+				<div class="bg-light px-3 rounded mt-3  p-2">
+					<ul class="list-unstyled">
+						<li class="d-flex">
+							<p class="col-2">Race</p>
+							{% for race in dog.races %}
+								<p>{{race.name}}</p>
+							{% endfor %}
+						</li>
+						<li class="d-flex">
+							<p class="col-2">Accepte les autres animaux</p>
+							{% if dog.isPetFriendly == true %}
+								<p>Oui</p>
+							{% else %}
+								<p>Non</p>
+							{% endif %}
+						</li>
+						<li class="d-flex">
+							<p class="col-2">Antécédents</p>
+							<p>{{dog.background}}</p>
+						</li>
+						<li class="d-flex">
+							<p class="col-2">Description</p>
+							<p>{{dog.description}}</p>
+						</li>
+					</ul>
 				</div>
 			</div>
-		{% endfor %}
+		</div>
 	{% endfor %}
+	{# {% endfor %} #}
 
 	{% if (is_granted('ROLE_ADOPTER') and not requests.isFirstRequest(app.user, announcement)) or not app.user %}
 		<div class="text-center m-5">

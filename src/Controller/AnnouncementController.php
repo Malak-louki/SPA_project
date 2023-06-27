@@ -18,7 +18,7 @@ class AnnouncementController extends AbstractController
     #[Route('/annonce/{id}', name: 'announcement_show', requirements: ["id" => "\d+"])]
     public function show(
         int $id,
-        Announcement $annonce,
+        Announcement $announcement,
         AnnouncementRepository $announcementRepository,
         DogRepository $dogRepository,
         Request $request,
@@ -30,11 +30,11 @@ class AnnouncementController extends AbstractController
         $filter = new AnnouncementFilter();
 
         $form = $this->createForm(DogFilterType::class, $filter, [
-            'announcement' => $annonce,
+            'announcement' => $announcement,
         ]);
         $form->handleRequest($request);
 
-        $dogs = $dogRepository->filterDogs($filter, $annonce);
+        $dogs = $dogRepository->filterDogs($filter, $announcement);
 
         return $this->render('annonce/announcement.html.twig', [
             'id' => $id,
