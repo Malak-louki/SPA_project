@@ -20,22 +20,22 @@ class RequestController extends AbstractController
     #[Route('/adoptant/premier-contact/{id}', name: 'request_new', requirements: ['id' => "\d+"])]
     public function new(
         HttpRequest $request,
-        Announcement $annoucement,
+        Announcement $announcement,
         RequestRepository $requestRepository
     ): Response {
         /** @var Adopter */
         $user = $this->getUser();
 
-        $requests = $requestRepository->getIsFirstRequest($user, $annoucement);
+        $requests = $requestRepository->getIsFirstRequest($user, $announcement);
         if (count($requests) > 0) {
             $this->addFlash('warning', 'Vous avez déjà postulé à cette annonce');
 
-            return $this->redirectToRoute('app_annonce', ['id' => $annoucement->getId()]);
+            return $this->redirectToRoute('app_annonce', ['id' => $announcement->getId()]);
         }
 
         $firstRequest = new Request();
         $firstRequest->setAdopter($user);
-        $firstRequest->setAnnouncement($annoucement);
+        $firstRequest->setAnnouncement($announcement);
 
         $conversation = (new Conversation())
             ->setIsAnnouncer(false);
@@ -43,7 +43,7 @@ class RequestController extends AbstractController
 
         $form = $this->createForm(FirstRequestType::class, $firstRequest, [
             'method' => 'POST',
-            'announcement' => $annoucement,
+            'announcement' => $announcement,
         ]);
 
         $form->handleRequest($request);
@@ -52,12 +52,12 @@ class RequestController extends AbstractController
             $requestRepository->save($firstRequest, true);
             $this->addFlash('success', 'Votre message a été envoyé.');
 
-            return $this->redirectToRoute('app_annonce', ['id' => $annoucement->getId()]);
+            return $this->redirectToRoute('app_annonce', ['id' => $announcement->getId()]);
         }
 
         return $this->render('request/new.html.twig', [
             'form' => $form->createView(),
-            'annoucement' => $annoucement,
+            'announcement' => $announcement,
         ]);
     }
 }
