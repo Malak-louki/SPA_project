@@ -2,7 +2,6 @@
 
 namespace App\Repository;
 
-use App\Entity\Adopter;
 use App\Entity\Announcement;
 use App\Entity\Announcer;
 use App\Entity\Race;

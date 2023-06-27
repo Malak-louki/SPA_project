@@ -16,6 +16,7 @@ class AnnouncerController extends AbstractController
         /** @var ?Announcer */
         $announcer = $this->getUser();
         $announcements = $announcementRepository->findForAnnouncerManagement($announcer);
+
         return $this->render('announcer/announcementManagement.html.twig', [
             'announcements' => $announcements,
         ]);
