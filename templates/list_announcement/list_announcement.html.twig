@@ -16,26 +16,26 @@
 	{{ form_end(form) }}
 	<section class="container">
 		{% if is_granted("ROLE_ANNOUNCER") %}
-			<a href="{{ path('app_add_announcement')}}" class="btn btn-warning">Ajoutez une annonce</a>
+			<a href="{{ path('addAnnouncement_new')}}" class="btn btn-warning">Ajoutez une annonce</a>
 		{% endif %}
 		<div class="d-flex flex-wrap justify-content-between">
-			{% for annonce in annonces %}
+			{% for announcement in announcements %}
 				<article class="my-5 p-3 col-5 bg-body-secondary">
 					<div>
-						{% if annonce.getAdoptableDogs|length == 0 and annonce.dogs|length > 0 %}
+						{% if announcement.getAdoptableDogs|length == 0 and announcement.dogs|length > 0 %}
 							<p class="btn btn-warning pe-none">Pourvue</p>
 						{% endif %}
 					</div>
 					<div class="text-center">
-						{% for image in annonce.getDogsImages(true)|slice(0, 3) %}
+						{% for image in announcement.getDogsImages(true)|slice(0, 3) %}
 							<img src="{{ vich_uploader_asset(image) }}" alt="" class="listImg">
 						{% endfor %}
 					</div>
-					<h1 class="text-center">{{annonce.title}}</h1>
+					<h1 class="text-center">{{announcement.title}}</h1>
 					<div class="d-flex justify-content-around my-3">
-						<p>Chiens disponibles :{{annonce.getAdoptableDogs()|length}}</p>
+						<p>Chiens disponibles :{{announcement.getAdoptableDogs()|length}}</p>
 						<p>Races disponibles :
-							{% for dog in annonce.getAdoptableDogs() %}
+							{% for dog in announcement.getAdoptableDogs() %}
 								{% set loopDog = loop %}
 								{% for race in dog.races %}
 									{{race.name -}}
@@ -47,8 +47,8 @@
 					</div>
 					<div class="d-flex justify-content-between align-items-center">
 						<p class="m-0">Mis à jour :
-							{{annonce.updatedAt|date("m/d/Y")}}</p>
-						<a href="{{path('app_annonce',{id:annonce.id})}}" class="btn btn-warning">Consulter</a>
+							{{announcement.updatedAt|date("m/d/Y")}}</p>
+						<a href="{{path('announcement_show',{id:announcement.id})}}" class="btn btn-warning">Consulter</a>
 					</div>
 
 				</article>

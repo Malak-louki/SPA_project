@@ -40,7 +40,7 @@ class Dog
     protected ?Announcement $announcement = null;
 
     #[ORM\OneToMany(mappedBy: 'dog', targetEntity: Image::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
-    #[Assert\Count(min: 1)]
+    #[Assert\Count(min: 0)]
     protected Collection $images;
 
     #[ORM\ManyToMany(targetEntity: Race::class, inversedBy: 'dogs')]

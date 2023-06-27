@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Annonce
-	{{annonces.title}}
+	{{announcement.title}}
 {% endblock %}
 
 {% block body %}
@@ -11,17 +11,18 @@
 
 			{{ form_widget(form)}}
 			<div class="d-flex mb-5">
-			<button type="submit" class="btn btn-warning  m-auto w-25 ">Filtrer</button>
+				<button type="submit" class="btn btn-warning  m-auto w-25 ">Filtrer</button>
 			</div>
 			{{ form_end(form)}}
 		</div>
 		<div class="d-flex justify-content-between">
 			<h1 class="font-weight-bold">Portée de
-				{{annonces.title }}</h1>
+				{{announcement.title }}</h1>
 		</div>
-		<p>{{annonces.generalInformation}}</p>
+		<p>{{announcement.generalInformation}}</p>
 
-		{% for dog in dogs %}
+		{# {% for dog in dogs %} #}
+		{% for dog in announcement.dogs %}
 			<div class="shadow px-3 rounded">
 				<div class="d-flex justify-content-between mt-5 pt-2 align-items-center">
 					<h2 class="text-warning">{{ dog.name }}</h2>
@@ -68,13 +69,12 @@
 				</div>
 			</div>
 		</div>
-		{% endfor %}
+	{% endfor %}
 
-		{% if (is_granted('ROLE_ADOPTER') and not requests.isFirstRequest(app.user, annonces)) or not app.user %}
-			<div class="text-center m-5">
-				<a href="{{path('request_new',{id:annonces.id})}}" class="btn btn-warning">Répondre à l'annonce</a>
-			</div>
-		{% endif %}
-		
-	</section>
-{% endblock body %}
+	{% if (is_granted('ROLE_ADOPTER') and not requests.isFirstRequest(app.user, annonces)) or not app.user %}
+		<div class="text-center m-5">
+			<a href="{{path('request_new',{id:annonces.id})}}" class="btn btn-warning">Répondre à l'annonce</a>
+		</div>
+	{% endif %}
+
+</section>{% endblock body %}

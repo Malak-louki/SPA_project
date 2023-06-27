@@ -20,10 +20,10 @@ class ListAnnouncementController extends AbstractController
         $form = $this->createForm(AnnouncementFilterType::class, $filter);
         $form->handleRequest($request);
 
-        $annonces = $announcementRepository->groupByAnnouncement($filter);
+        $announcements = $announcementRepository->groupByAnnouncement($filter);
 
         return $this->render('list_announcement/list_announcement.html.twig', [
-            'annonces' => $annonces,
+            'announcements' => $announcements,
             'form' => $form->createView(),
         ]);
     }
