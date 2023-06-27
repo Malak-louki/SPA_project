@@ -15,7 +15,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AnnouncementController extends AbstractController
 {
-
     #[Route('/annonce/{id}', name: 'announcement_show', requirements: ["id" => "\d+"])]
     public function show(
         int $id,
@@ -25,6 +24,7 @@ class AnnouncementController extends AbstractController
         Request $request,
         RequestRepository $requestRepository
     ): Response {
+
         $announcement = $announcementRepository->find($id);
 
         $filter = new AnnouncementFilter();
