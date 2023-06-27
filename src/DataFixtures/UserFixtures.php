@@ -40,32 +40,13 @@ class UserFixtures extends Fixture
                 ->setEmail('lilia@gmail.com')
                 ->setPassword('aze123')
                 ->setCity('lyon'),
-            (new Admin())
-                ->setFirstName('Admin Prénom')
-                ->setLastName('Admin NOM')
-                ->setEmail('admin@gmail.com')
-                ->setPassword('aze123')
-                ->setCity('Roanne'),
             (new Adopter())
                 ->setTel('+33654167214')
                 ->setFirstName('Mimi')
-                ->setLastName('Xouxou')
+                ->setLastName('Dupont')
                 ->setEmail('mimi@gmail.com')
                 ->setPassword('aze123')
-                ->setCity('lyon'),
-            (new Announcer())
-                ->setFirstName('Lilia')
-                ->setLastName('Lamini')
-                ->setEmail('lilia@gmail.com')
-                ->setPassword('aze123')
-                ->setCity('lyon'),
-            (new Adopter())
-                ->setTel('+33654167214')
-                ->setFirstName('Mimi')
-                ->setLastName('Xouxou')
-                ->setEmail('mimi@gmail.com')
-                ->setPassword('aze123')
-                ->setCity('lyon'),
+                ->setCity('Lyon'),
             (new Announcer())
                 ->setFirstName('Annonceur')
                 ->setLastName('Elevage des beaux chiens')
