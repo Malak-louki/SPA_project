@@ -19,9 +19,14 @@
 								<a class="btn btn-primary" href="{{asset('announcement_show')}}">Consulter l'annonce</a>
 							</div>
 						</div>
-						{% for request in announcement.requests %}
-							{# {{dump(request)}} #}
-						{% endfor %}
+						<div class="d-flex justify-content-center">
+							{% for request in announcement.requests %}
+								<a class="btn btn-primary mx-2" href="#">
+									Répondre à
+									{{request.adopter}}
+								</a>
+							{% endfor %}
+						</div>
 					</li>
 				</ul>
 			{% endfor %}
