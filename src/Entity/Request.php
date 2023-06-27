@@ -25,7 +25,7 @@ class Request
     #[ORM\JoinColumn(nullable: false)]
     protected ?Adopter $adopter = null;
 
-    #[ORM\OneToMany(mappedBy: 'request', targetEntity: Conversation::class)]
+    #[ORM\OneToMany(mappedBy: 'request', targetEntity: Conversation::class, cascade: ['persist', 'remove'])]
     protected Collection $conversations;
 
     #[ORM\ManyToOne(inversedBy: 'requests')]
@@ -39,6 +39,7 @@ class Request
     {
         $this->conversations = new ArrayCollection();
         $this->dogs = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

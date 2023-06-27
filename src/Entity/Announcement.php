@@ -210,8 +210,9 @@ class Announcement
 
         return $adoptedDogs->count() == $this->getDogs()->count();
     }
+
     /**
-     * @return Collection<int, Dog> 
+     * @return Collection<int, Dog>
      */
     public function getAdoptableDogs(): Collection
     {
@@ -223,7 +224,7 @@ class Announcement
     }
 
     /**
-     * @return Collection<int, Dog> 
+     * @return Collection<int, Dog>
      */
     public function getNotAdoptableDogs(): Collection
     {
@@ -232,5 +233,10 @@ class Announcement
         });
 
         return $adoptableDogs;
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 }

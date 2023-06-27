@@ -41,11 +41,6 @@ class AnnouncementRepository extends ServiceEntityRepository
         }
     }
 
-    // public function findOneBy()
-    // {
-    //     $this->getEntityManager()->;
-    // }
-
     public function groupByAnnouncement(AnnouncementFilter $filter): array
     {
         $qb = $this->createQueryBuilder('a')
@@ -82,9 +77,9 @@ class AnnouncementRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    //    /**
-    //     * @return Announcement[] Returns an array of Announcement objects
-    //     */
+    /**
+     * @return Announcement[] Returns an array of Announcement objects
+     */
     public function findForHome(): array
     {
         return $this->createQueryBuilder('a')
@@ -95,14 +90,4 @@ class AnnouncementRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-
-    //    public function findOneBySomeField($value): ?Announcement
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

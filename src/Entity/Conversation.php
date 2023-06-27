@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ConversationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: ConversationRepository::class)]
 class Conversation
@@ -15,6 +16,8 @@ class Conversation
     protected ?int $id = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank]
+    #[Assert\Length(max: 12000)]
     protected ?string $content = null;
 
     #[ORM\Column]
@@ -26,6 +29,11 @@ class Conversation
     #[ORM\ManyToOne(inversedBy: 'conversations')]
     #[ORM\JoinColumn(nullable: false)]
     protected ?Request $request = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable();
+    }
 
     public function getId(): ?int
     {

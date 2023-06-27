@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<head>
-	<meta charset="UTF-8">
-	<title>
-		{% block title %}WoofAdopte
-		{% endblock %}
-	</title>
-	<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/style.css') }}">
-	<script defer src="{{ asset('js/bootstrap.min.js') }}"></script>
-	<link
-	rel="stylesheet" href="{{ asset('css/style.css') }}">
-	{# Commentaire nécessaire, mais perturbant #}
-	{% block stylesheets %}{% endblock %}
-	{% block javascripts %}{% endblock %}
-</head>
-<body>
-	{% block header %}
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="{{path('home')}}">Accueil</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="{{path('app_list_announcement')}}">Liste annonces</a>
-					</li>
-					{% if not app.user %}
-						{% if not is_granted("ROLE_ADOPTER") or not is_granted("ROLE_ANNOUNCER") or not is_granted("ROLE_ADMIN") %}
-							<li class="nav-item">
-								<a class="nav-link" href="{{path('security_login')}}">Connexion</a>
-							</li>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}WoofAdopte
+			{% endblock %}
+		</title>
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+		<script defer src="{{ asset('js/bootstrap.min.js') }}"></script>
+		<link
+		rel="stylesheet" href="{{ asset('css/style.css') }}">
+		{# Commentaire nécessaire, mais perturbant #}
+		{% block stylesheets %}{% endblock %}
+		{% block javascripts %}{% endblock %}
+	</head>
+	<body>
+		{% block header %}
+			<nav class="navbar navbar-expand navbar-light bg-light">
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="{{path('home')}}">Accueil</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('app_list_announcement')}}">Liste annonces</a>
+						</li>
+						{% if not app.user %}
+							{% if not is_granted("ROLE_ADOPTER") or not is_granted("ROLE_ANNOUNCER") or not is_granted("ROLE_ADMIN") %}
+								<li class="nav-item">
+									<a class="nav-link" href="{{path('security_login')}}">Connexion</a>
+								</li>
+							{% endif %}
 						{% endif %}
-					{% endif %}
 					{% if not app.user %}
 						{% if not is_granted("ROLE_ADOPTER") or not is_granted("ROLE_ANNOUNCER") or not is_granted("ROLE_ADMIN") %}
 							<li class="nav-item">
@@ -54,6 +55,13 @@
 			</div>
 		</nav>
 	{% endblock header %}
+	{% for type, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="alert alert-{{ type }}">
+				{{ message }}
+			</div>
+		{% endfor %}
+    {% endfor %}
 	{% block body %}{% endblock %}
 	{% block footer %}
 		<footer class="p-4 mt-5 bg-dark text-white">

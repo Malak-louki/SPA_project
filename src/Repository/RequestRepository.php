@@ -2,6 +2,8 @@
 
 namespace App\Repository;
 
+use App\Entity\Adopter;
+use App\Entity\Announcement;
 use App\Entity\Request;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -39,28 +41,18 @@ class RequestRepository extends ServiceEntityRepository
         }
     }
 
-    //    /**
-    //     * @return Request[] Returns an array of Request objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('r.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
-
-    //    public function findOneBySomeField($value): ?Request
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+    /**
+     * @return Request[] Returns an array of Request objects
+     */
+    public function getIsFirstRequest(Adopter $user, Announcement $announcement): array
+    {
+        return $this->createQueryBuilder('req')
+            ->where('req.adopter = :user_id')
+            ->setParameter('user_id', $user->getId())
+            ->andWhere('req.announcement = :announcement_id')
+            ->setParameter(':announcement_id', $announcement->getId())
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

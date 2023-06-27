@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande de contact{% endblock %}
+
+{% block body %}
+    <section class="container mt-5">
+        <div class="">
+            <h1 class="font-weight-bold">
+                Formulaire de contact
+            </h1>
+            <h3>Annonce : {{annoucement.title }}</h3>
+        </div>
+        {{form_start(form)}}
+        <h4 class="mt-5">Je souhaite plus d'informations sur :</h4>
+            {{form_widget(form.dogs)}} 
+            {{form_widget(form.adopter)}} 
+            {# {{form_row(form.conversations)}}  #}
+            {{ form_widget(form.conversations) }}
+            {{form_errors(form)}}
+            <button type="submit" class="btn btn-warning">Envoyer</button>
+        {{form_end(form)}}
+    </section>
+{% endblock body %}
