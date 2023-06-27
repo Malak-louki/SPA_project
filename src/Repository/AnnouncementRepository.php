@@ -2,7 +2,9 @@
 
 namespace App\Repository;
 
+use App\Entity\Adopter;
 use App\Entity\Announcement;
+use App\Entity\Announcer;
 use App\Entity\Race;
 use App\Form\Filter\AnnouncementFilter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -91,10 +93,17 @@ class AnnouncementRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findForAnnouncerManagement(): array
+    public function findForAnnouncerManagement(Announcer $announcer): array
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.')
+            ->leftJoin('a.requests', 'r')
+            // ->leftJoin('r.adopter', 'ad')
+            ->andWhere('a.announcer = :announcer')
+            // ->andWhere('ad.id = 5')
+            ->setParameter(':announcer', $announcer->getId())
+            ->orderBy('r.updatedAt', 'DESC')
+            ->getQuery()
+            ->getResult()
         ;
     }
 

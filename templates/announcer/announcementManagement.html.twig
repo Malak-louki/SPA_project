@@ -8,12 +8,23 @@
 		<h1>
 			Liste des annonces
 		</h1>
-		<div
-			class="container-2 border border-dark">{# {% for annonce in annonces %}
-								<h2>
-									{{annonce.name}}
-								</h2>
-							{% endfor %} #}
+		<div class="card container">
+			{% for announcement in announcements %}
+				<ul class="list-unstyled card p-3 m-3">
+					<li>
+						<div class="d-flex justify-content-between">
+							<h2>{{announcement}}</h2>
+							<div class="boutons">
+								<a class="btn btn-warning" href="{{asset('addAnnoucement_modify')}}">Modifier l'annonce</a>
+								<a class="btn btn-primary" href="{{asset('announcement_show')}}">Consulter l'annonce</a>
+							</div>
+						</div>
+						{% for request in announcement.requests %}
+							{# {{dump(request)}} #}
+						{% endfor %}
+					</li>
+				</ul>
+			{% endfor %}
 		</div>
 	</div>
 {% endblock %}
