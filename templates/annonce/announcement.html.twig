@@ -68,12 +68,13 @@
 				</div>
 			</div>
 		</div>
-	{% endfor %}
+		{% endfor %}
 
-	{% if not requests.isFirstRequest(app.user, annonces) %}
-	<div class="text-center m-5">
-			<a href="{{path('request_new',{id:annonces.id})}}" class="btn btn-warning">Répondre à l'annonce</a>
-		</div>
-	{% endif %}
-	
-</section>{% endblock body %}
+		{% if (is_granted('ROLE_ADOPTER') and not requests.isFirstRequest(app.user, annonces)) or not app.user %}
+			<div class="text-center m-5">
+				<a href="{{path('request_new',{id:annonces.id})}}" class="btn btn-warning">Répondre à l'annonce</a>
+			</div>
+		{% endif %}
+		
+	</section>
+{% endblock body %}
