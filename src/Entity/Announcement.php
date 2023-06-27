@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: AnnouncementRepository::class)]
 class Announcement
@@ -29,7 +30,8 @@ class Announcement
     #[ORM\JoinColumn(nullable: false)]
     protected ?Announcer $announcer = null;
 
-    #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Dog::class)]
+    #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Dog::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
+    #[Assert\Count(min: 0)]
     protected Collection $dogs;
 
     #[ORM\OneToMany(mappedBy: 'announcement', targetEntity: Request::class)]
@@ -42,6 +44,8 @@ class Announcement
     {
         $this->dogs = new ArrayCollection();
         $this->requests = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
     }
 
     public function getId(): ?int

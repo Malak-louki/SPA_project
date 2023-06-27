@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+	<script defer src="{{ asset('js/collection.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<h2 class="mt-2 mb-4">Informations de l'annonce</h2>
+		{{ form_start(form) }}
+		{{form_errors(form)}}
+		<div class="container">
+			<div>
+				{{ form_row(form.title) }}
+			</div>
+			<div>
+				{{ form_row(form.generalInformation) }}
+			</div>
+			<div class="mt-5">
+				{{ form_row(form.dogs)}}
+			</div>
+		</div>
+		<div class="text-center">
+			<button type="submit" class="btn btn-warning">Valider</button>
+		</div>
+	</div>
+	{{ form_end(form) }}
+</section>{% endblock %}

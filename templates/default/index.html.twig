@@ -30,7 +30,7 @@
 									<p>Dernière mise à jour :
 										{{ announcement.updatedAt|date("d/m/Y") }}
 									</p>
-									<a href="{{path('app_annonce',{id:announcement.id})}}" class="btn btn-warning w-25 m-auto">Consulter</a>
+									<a href="{{path('announcement_show',{id:announcement.id})}}" class="btn btn-warning w-25 m-auto">Consulter</a>
 								</div>
 							</div>
 						{% endif %}

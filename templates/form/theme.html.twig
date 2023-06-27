@@ -1,0 +1,17 @@
+{% block collection_row %}
+	{% if label %}
+		<div class="d-flex mt-5">
+			<h2>{{ label }}</h2>
+		{% endif %}
+		<button type="button" class="add_item_link btn btn-success text-end ms-5" data-collection-holder-class="{{ id }}">
+			Ajouter
+		</button>
+	</div>
+	<ul class="{{ id }} list-unstyled" data-index="{{ form|length > 0 ? form|last.vars.name + 1 : 0 }}" data-prototype="{{ form_widget(form.vars.prototype)|e('html_attr') }}" data-prototype-name="__{{ form.vars.name }}__" data-collection-holder>
+		{% for childForm in form %}
+			<li data-collection-element>
+				{{ form_widget(childForm) }}
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock collection_row %}

@@ -15,23 +15,34 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AnnouncementController extends AbstractController
 {
-    #[Route('/annonce/{id}', name: 'app_annonce', requirements: ["id" => "\d+"])]
-    public function announcement(Announcement $annonce, AnnouncementRepository $repository, DogRepository $dogRepository, Request $request): Response
-    {
-        
+    #[Route('/annonce/{id}', name: 'announcement_show', requirements: ["id" => "\d+"])]
+    public function show(
+        int $id,
+        Announcement $announcement,
+        AnnouncementRepository $announcementRepository,
+        DogRepository $dogRepository,
+        Request $request,
+        RequestRepository $requestRepository
+    ): Response {
+
+        $announcement = $announcementRepository->find($id);
+
         $filter = new AnnouncementFilter();
-        
+
         $form = $this->createForm(DogFilterType::class, $filter, [
-            'announcement' => $annonce,
+            'announcement' => $announcement,
         ]);
         $form->handleRequest($request);
-        
-            $dogs = $dogRepository->filterDogs($filter, $annonce);
-        
+
+        $dogs = $dogRepository->filterDogs($filter, $announcement);
+
         return $this->render('annonce/announcement.html.twig', [
-            'annonces' => $annonce,
-            'form'      => $form->createView(),
-            'dogs'  => $dogs,
+            'id' => $id,
+            'announcement' => $announcement,
+            'form' => $form->createView(),
+            'dogs' => $dogs,
+            'requests' => $requestRepository,
         ]);
+
     }
 }
