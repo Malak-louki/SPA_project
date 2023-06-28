@@ -9,7 +9,7 @@
 					{% if announcement.dogs|length != 0 %}
 						{% if not announcement.announcementClosed %}
 							<div class="my-5 p-3 col-5 bg-body-secondary">
-								<div class="chiens d-flex flex-row justify-content-evenly">
+								<div class="chiens d-flex flex-row flex-wrap justify-content-evenly">
 									{% for image in announcement.getDogsImages|slice(0, 3) %}
 										<img src="{{vich_uploader_asset(image)}}" alt="image de chien" class="listImg">
 									{% endfor %}
@@ -26,11 +26,11 @@
 										</p>
 									{% endfor %}
 								</div>
-								<div class="d-flex align-items-center justify-content-between">
+								<div class="d-flex align-items-center flex-wrap justify-content-between">
 									<p>Dernière mise à jour :
 										{{ announcement.updatedAt|date("d/m/Y") }}
 									</p>
-									<a href="{{path('announcement_show',{id:announcement.id})}}" class="btn btn-warning w-25 m-auto">Consulter</a>
+									<a href="{{path('announcement_show',{id:announcement.id})}}" class="btn btn-warning w-content m-auto">Consulter</a>
 								</div>
 							</div>
 						{% endif %}
