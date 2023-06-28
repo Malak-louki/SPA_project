@@ -100,12 +100,17 @@ class RequestController extends AbstractController
             $conversationRepository->save($conversation, true);
             $this->addFlash('success', 'Votre message a été envoyé.');
 
-            return $this->redirectToRoute('app_annonce', ['id' => $requestReply->getAnnouncement()->getId()]);
+            return $this->redirectToRoute('request_reply', ['id' => $requestReply->getId()]);
         }
 
         return $this->render('request/reply.html.twig', [
             'form' => $form->createView(),
+            'requestReply' => $requestReply,
+            'adopter' => $requestReply->getAdopter(),
             'announcement' => $requestReply->getAnnouncement(),
+            'conversations' => $requestReply->getConversations(),
+            'dogs' => $requestReply->getDogs(),
+            'user' => $user,
         ]);
     }
 

@@ -1,15 +1,56 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Fil de conversation{% endblock %}
+{% block title %}Fil de discussion{% endblock %}
 
 {% block body %}
     <section class="container mt-5">
         <div class="">
             <h1 class="font-weight-bold">
-                Formulaire de contact
+                Fil de discussion
             </h1>
-            <h3>Annonce : {{announcement.title }}</h3>
+            <h4>Information annonce :</h4>
+            <ul style="list-style: none;">
+                <li> <strong>Titre </strong>{{announcement.title }}</li>
+                <li> <strong>Nombre de chien selectionné : </strong> {{requestReply.dogs|length }}</li>
+                {% if requestReply.dogs|length > 0 %}
+                <li> <strong>Nom chien : </strong> 
+                    {% for dog in dogs %}
+                        {{dog.name}}
+                        {% if not loop.last %}
+                            {{' / '}}
+                        {% endif %}
+                        
+                    {% endfor %}
+                    </li>
+                {% endif %}
+            </ul>
+            <hr>
+            <h4>Information adopteur :</h4>
+            <ul style="list-style: none;">
+                <li> <strong>Prénom / Nom : </strong>{{adopter.firstname}} {{adopter.lastname}}
+                </li>
+                <li> <strong> e-Mail : </strong>{{adopter.email}}</li>
+                <li> <strong> Téléphone : </strong>{{adopter.tel}}</li>
+                <li> <strong> Ville / Département : </strong> {{adopter.city}} - {{adopter.department.name ~ ' (' ~ adopter.department.departmentCode ~ ') ' }}</li>
+            </ul>
+            <hr>
         </div>
+        {# <p> {{conversations.content }}</p> #}
+
+        {# {{dump(requestReply.dogs|length )}} #}
+        <ul class="list-unstyled col-10">
+            {% for conversation in conversations %}
+            {% if user.instanceof('Announcer') %}
+                <li>
+                {{conversation.content}}
+                </li>
+            
+            {% endif %}
+            
+            {% endfor %}
+        </ul>
+            
+
         {{form_start(form)}}
             {{form_errors(form)}}
             {{ form_rest(form) }}

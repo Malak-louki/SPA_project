@@ -57,13 +57,4 @@ class RequestRepository extends ServiceEntityRepository
         ;
     }
 
-    public function getConversation(int $id)
-    {
-        return $this->createQueryBuilder('req')
-            ->where('req.id = :resq_id')
-            ->setParameter(':resq_id', $id)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
 }
