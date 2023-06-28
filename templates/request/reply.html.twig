@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fil de conversation{% endblock %}
+
+{% block body %}
+    <section class="container mt-5">
+        <div class="">
+            <h1 class="font-weight-bold">
+                Formulaire de contact
+            </h1>
+            <h3>Annonce : {{announcement.title }}</h3>
+        </div>
+        {{form_start(form)}}
+            {{form_errors(form)}}
+            {{ form_rest(form) }}
+            <button type="submit" class="btn btn-warning">Envoyer</button>
+        {{form_end(form)}}
+    </section>
+{% endblock body %}

@@ -4,13 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Adopter;
 use App\Entity\Announcement;
+use App\Entity\Announcer;
 use App\Entity\Conversation;
 use App\Entity\Request;
+use App\Form\ConversationType;
 use App\Form\FirstRequestType;
+use App\Repository\ConversationRepository;
 use App\Repository\RequestRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request as HttpRequest;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
@@ -62,40 +66,46 @@ class RequestController extends AbstractController
     }
 
     // #[IsGranted('ROLE_ADOPTER')]
-    #[IsGranted('ROLE_ANNOUNCER')]
+    #[IsGranted('ROLE_USER')]
     #[Route('/fil-conversation/{id}', name: 'request_reply', requirements: ['id' => "\d+"])]
     public function reply(
+        int $id,
         HttpRequest $request,
-        Announcement $announcement,
-        RequestRepository $requestRepository
+        RequestRepository $requestRepository,
+        ConversationRepository $conversationRepository
     ): Response {
 
+        $requestReply = $requestRepository->find($id);
+
         $user = $this->getUser();
-
-        $requestReply = new Request();
-
-
-        $conversation = (new Conversation())
-            ->setIsAnnouncer(true);
-        $requestReply->addConversation($conversation);
-
-        $form = $this->createForm(FirstrequestReplyType::class, $requestReply, [
-            'method' => 'POST',
-            'announcement' => $announcement,
-        ]);
-
-        $form->handleRequest($requestReply);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $requestRepository->save($requestReply, true);
-            $this->addFlash('success', 'Votre message a été envoyé.');
-
-            return $this->redirectToRoute('app_annonce', ['id' => $announcement->getId()]);
+        if ($user instanceof Adopter && $user != $requestReply->getAdopter()) {
+            throw new AccessDeniedHttpException("Vous n'avez pas les droits pour accèder
+            à cette page.");
+        }
+        if ($user instanceof Announcer && $user != $requestReply->getAnnouncement()->getAnnouncer()) {
+            throw new AccessDeniedHttpException("Vous n'avez pas les droits pour accèder
+            à cette page.");
         }
 
-        return $this->render('request/new.html.twig', [
+        $conversation = (new Conversation())
+            ->setIsAnnouncer($user instanceof Announcer)
+            ->setRequest($requestReply)
+        ;
+
+        $form = $this->createForm(ConversationType::class, $conversation);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $conversationRepository->save($conversation, true);
+            $this->addFlash('success', 'Votre message a été envoyé.');
+
+            return $this->redirectToRoute('app_annonce', ['id' => $requestReply->getAnnouncement()->getId()]);
+        }
+
+        return $this->render('request/reply.html.twig', [
             'form' => $form->createView(),
-            'announcement' => $announcement,
+            'announcement' => $requestReply->getAnnouncement(),
         ]);
     }
 

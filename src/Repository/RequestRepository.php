@@ -57,16 +57,11 @@ class RequestRepository extends ServiceEntityRepository
         ;
     }
 
-    public function getConversation(Announcement $announcement, Adopter $user, Announcer $announcer)
+    public function getConversation(int $id)
     {
         return $this->createQueryBuilder('req')
-            ->leftJoin('req.conversation', 'conv')
-            ->Join('req.adopter', 'ad')
-            ->Join('req.a', 'ad')
-            ->where('req.adopter = :user_id')
-            ->setParameter('user_id', $user->getId())
-            ->andWhere('req.announcement = :announcement_id')
-            ->setParameter(':announcement_id', $announcement->getId())
+            ->where('req.id = :resq_id')
+            ->setParameter(':resq_id', $id)
             ->getQuery()
             ->getResult()
         ;
