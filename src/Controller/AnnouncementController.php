@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+
 class AnnouncementController extends AbstractController
 {
     #[Route('/annonce/{id}', name: 'announcement_show', requirements: ['id' => "\d+"])]
