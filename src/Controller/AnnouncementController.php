@@ -4,19 +4,19 @@ namespace App\Controller;
 
 use App\Entity\Announcement;
 use App\Entity\Announcer;
+use App\Form\AddAnnouncementType;
+use App\Form\AnnouncementFilterType;
 use App\Form\Filter\AnnouncementFilter;
 use App\Form\Filter\DogFilterType;
 use App\Repository\AnnouncementRepository;
 use App\Repository\DogRepository;
 use App\Repository\RequestRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Form\AddAnnouncementType;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-use App\Form\AnnouncementFilterType;
-use Doctrine\ORM\EntityManagerInterface;
 
 class AnnouncementController extends AbstractController
 {
@@ -50,7 +50,6 @@ class AnnouncementController extends AbstractController
     }
 
     /** --------------------------------------- */
-
     #[IsGranted('ROLE_ANNOUNCER')]
     #[Route('annonceur/ajout/annonce', name: 'announcement_new')]
     #[Route('annonceur/modification/annonce/{id}', name: 'announcement_modify')]
