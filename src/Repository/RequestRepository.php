@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Adopter;
 use App\Entity\Announcement;
+use App\Entity\Announcer;
 use App\Entity\Request;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -47,6 +48,21 @@ class RequestRepository extends ServiceEntityRepository
     public function getIsFirstRequest(Adopter $user, Announcement $announcement): array
     {
         return $this->createQueryBuilder('req')
+            ->where('req.adopter = :user_id')
+            ->setParameter('user_id', $user->getId())
+            ->andWhere('req.announcement = :announcement_id')
+            ->setParameter(':announcement_id', $announcement->getId())
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function getConversation(Announcement $announcement, Adopter $user, Announcer $announcer)
+    {
+        return $this->createQueryBuilder('req')
+            ->leftJoin('req.conversation', 'conv')
+            ->Join('req.adopter', 'ad')
+            ->Join('req.a', 'ad')
             ->where('req.adopter = :user_id')
             ->setParameter('user_id', $user->getId())
             ->andWhere('req.announcement = :announcement_id')

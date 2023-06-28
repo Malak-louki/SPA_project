@@ -30,6 +30,9 @@ class Conversation
     #[ORM\JoinColumn(nullable: false)]
     protected ?Request $request = null;
 
+    #[ORM\Column]
+    private ?bool $isRead = false;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -84,6 +87,18 @@ class Conversation
     public function setRequest(?Request $request): self
     {
         $this->request = $request;
+
+        return $this;
+    }
+
+    public function isIsRead(): ?bool
+    {
+        return $this->isRead;
+    }
+
+    public function setIsRead(bool $isRead): static
+    {
+        $this->isRead = $isRead;
 
         return $this;
     }

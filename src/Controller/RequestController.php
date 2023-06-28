@@ -60,4 +60,43 @@ class RequestController extends AbstractController
             'announcement' => $announcement,
         ]);
     }
+
+    // #[IsGranted('ROLE_ADOPTER')]
+    #[IsGranted('ROLE_ANNOUNCER')]
+    #[Route('/fil-conversation/{id}', name: 'request_reply', requirements: ['id' => "\d+"])]
+    public function reply(
+        HttpRequest $request,
+        Announcement $announcement,
+        RequestRepository $requestRepository
+    ): Response {
+
+        $user = $this->getUser();
+
+        $requestReply = new Request();
+
+
+        $conversation = (new Conversation())
+            ->setIsAnnouncer(true);
+        $requestReply->addConversation($conversation);
+
+        $form = $this->createForm(FirstrequestReplyType::class, $requestReply, [
+            'method' => 'POST',
+            'announcement' => $announcement,
+        ]);
+
+        $form->handleRequest($requestReply);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $requestRepository->save($requestReply, true);
+            $this->addFlash('success', 'Votre message a été envoyé.');
+
+            return $this->redirectToRoute('app_annonce', ['id' => $announcement->getId()]);
+        }
+
+        return $this->render('request/new.html.twig', [
+            'form' => $form->createView(),
+            'announcement' => $announcement,
+        ]);
+    }
+
 }
