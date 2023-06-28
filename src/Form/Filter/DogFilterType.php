@@ -3,14 +3,12 @@
 namespace App\Form\Filter;
 
 use App\Entity\Race;
-use App\Form\Filter\AnnouncementFilter;
 use App\Repository\RaceRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
 
 class DogFilterType extends AbstractType
 {
@@ -28,7 +26,7 @@ class DogFilterType extends AbstractType
             ])
             ->add('race', EntityType::class, [
                 'class' => Race::class,
-                'label'=> 'Race(s)',
+                'label' => 'Race(s)',
                 'multiple' => false,
                 'expanded' => false,
                 'choice_label' => 'name',
@@ -39,17 +37,15 @@ class DogFilterType extends AbstractType
                         ->innerJoin('r.dogs', 'dog')
                         ->where('dog.announcement = :a')
                         ->setParameter('a', $announcement);
-                }
+                },
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            
-            'data_class' => AnnouncementFilter::class, 
+            'data_class' => AnnouncementFilter::class,
             'announcement' => null,
-
         ]);
     }
 }

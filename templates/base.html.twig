@@ -33,45 +33,48 @@
 								</li>
 							{% endif %}
 						{% endif %}
-					{% if not app.user %}
-						{% if not is_granted("ROLE_ADOPTER") or not is_granted("ROLE_ANNOUNCER") or not is_granted("ROLE_ADMIN") %}
+						{% if not app.user %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{path('app_register')}}">Inscription</a>
 							</li>
 						{% endif %}
-					{% endif %}
-					{% if is_granted("ROLE_ADOPTER") or is_granted("ROLE_ANNOUNCER") or is_granted("ROLE_ADMIN") %}
-						<li class="nav-item">
-							<a class="nav-link" href="#">Mon compte</a>
-						</li>
-						{% if is_granted("ROLE_ADOPTER") or is_granted("ROLE_ANNOUNCER") or is_granted("ROLE_ADMIN") %}
+						{% if is_granted("ROLE_ADOPTER") or is_granted("ROLE_ADMIN") %}
+							<li class="nav-item">
+								<a class="nav-link" href="#">Mon compte</a>
+							</li>
+						{% elseif is_granted("ROLE_ANNOUNCER") %}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('announcer_announcement_management')}}">Mes annonces</a>
+							</li>
+						{% endif %}
+						{% if app.user %}
 							<li class="nav-item">
 								<a class="nav-link" href="{{ path('security_logout') }}">Déconnexion</a>
 							</li>
 						{% endif %}
-					{% endif %}
 
-				</ul>
-			</div>
-		</nav>
-	{% endblock header %}
-	{% for type, messages in app.flashes %}
-		{% for message in messages %}
-			<div class="alert alert-{{ type }}">
-				{{ message }}
-			</div>
-		{% endfor %}
-    {% endfor %}
-	{% block body %}{% endblock %}
-	{% block footer %}
-		<footer class="p-4 mt-5 bg-dark text-white">
-			<div class="d-flex align-items-center justify-content-between">
-				<h1 class="w-25">WoofAdopte</h1>
-				<div class="text-center">
-					<p class="my-0 w-50">Malak_Emilly_Hichem_Ernaud©HumanBooster_2023</p>
+					</ul>
 				</div>
-				<div class="w-25"></div>
-			</div>
-		</footer>
-	{% endblock footer %}
-</body></html>
+			</nav>
+		{% endblock header %}
+		{% for type, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="alert alert-{{ type }}">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endfor %}
+		{% block body %}{% endblock %}
+		{% block footer %}
+			<footer class="p-4 mt-5 bg-dark text-white">
+				<div class="d-flex align-items-center justify-content-between">
+					<h1 class="w-25">WoofAdopte</h1>
+					<div class="text-center">
+						<p class="my-0 w-50">Malak_Emilly_Hichem_Ernaud©HumanBooster_2023</p>
+					</div>
+					<div class="w-25"></div>
+				</div>
+			</footer>
+		{% endblock footer %}
+	</body>
+</html>

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Announcement;
+use App\Entity\Announcer;
 use App\Entity\Race;
 use App\Form\Filter\AnnouncementFilter;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -86,6 +87,18 @@ class AnnouncementRepository extends ServiceEntityRepository
             // ->leftJoin('a.dogs', 'd') si besoin d'un left join
             ->orderBy('a.updatedAt', 'DESC')
             ->setMaxResults(5)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findForAnnouncerManagement(Announcer $announcer): array
+    {
+        return $this->createQueryBuilder('a')
+            ->leftJoin('a.requests', 'r')
+            ->andWhere('a.announcer = :announcer')
+            ->setParameter(':announcer', $announcer->getId())
+            ->orderBy('r.updatedAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;
