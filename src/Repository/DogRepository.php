@@ -53,32 +53,31 @@ class DogRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    
-public function filterDogs(AnnouncementFilter $filter,Announcement $annonce) :array {
-    
-    $qb=$this->createQueryBuilder('dog');
-    $qb->innerJoin('dog.races','race')
-        ->where('dog.announcement = :announcement')
-        ->setParameter('announcement', $annonce);
-        if ($filter->getRace()) {
+
+    public function filterDogs(AnnouncementFilter $filter, Announcement $annonce): array
+    {
+        $qb = $this->createQueryBuilder('dog');
+        $qb->innerJoin('dog.races', 'race')
+            ->where('dog.announcement = :announcement')
+            ->setParameter('announcement', $annonce);
+        if (!is_null($filter->getRace())) {
             $qb->andWhere('race = :race')
-            ->setParameter('race',$filter->getRace());
+                ->setParameter('race', $filter->getRace());
         }
-    if ($filter->getIsAdopted()) {
-        $qb->andWhere('dog.isAdopted = :isAdopted')
-        ->setParameter('isAdopted', true);
+        if ($filter->getIsAdopted()) {
+            $qb->andWhere('dog.isAdopted = :isAdopted')
+                ->setParameter('isAdopted', true);
+        }
+
+        if ($filter->getIsLof()) {
+            $qb
+                ->andWhere('dog.isLof = :isLof')
+                ->setParameter('isLof', $filter->getIsLof());
+        }
+
+        return $qb->getQuery()
+            ->getResult();
     }
-
-    if ($filter->getIsLof()) {
-        $qb
-            ->andWhere('dog.isLof = :isLof')
-            ->setParameter('isLof', $filter->getIsLof());
-    }
-
-    return   $qb->getQuery()
-                ->getResult();
-
-}
     // /**
     //  * @return Dog[] Returns an array of Dog objects
     //  */

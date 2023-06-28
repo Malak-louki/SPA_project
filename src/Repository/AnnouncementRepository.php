@@ -96,23 +96,11 @@ class AnnouncementRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('a')
             ->leftJoin('a.requests', 'r')
-            // ->leftJoin('r.adopter', 'ad')
             ->andWhere('a.announcer = :announcer')
-            // ->andWhere('ad.id = 5')
             ->setParameter(':announcer', $announcer->getId())
             ->orderBy('r.updatedAt', 'DESC')
             ->getQuery()
             ->getResult()
         ;
     }
-
-    //    public function findOneBySomeField($value): ?Announcement
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }
