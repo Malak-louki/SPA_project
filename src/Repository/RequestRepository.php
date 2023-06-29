@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Adopter;
 use App\Entity\Announcement;
-use App\Entity\Announcer;
 use App\Entity\Request;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -56,5 +55,4 @@ class RequestRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-
 }

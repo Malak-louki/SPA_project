@@ -73,7 +73,6 @@ class RequestController extends AbstractController
         ConversationRepository $conversationRepository,
         Request $requestReply,
     ): Response {
-
         $user = $this->getUser();
         // Retriction d'accès
         if ($user instanceof Adopter && $user != $requestReply->getAdopter()) {
@@ -87,8 +86,8 @@ class RequestController extends AbstractController
         // Envoi en BdD si conversation lu
         foreach ($requestReply->getConversations() as $conversation) {
             if (
-                (!($conversation->getIsAnnouncer()) and $user instanceof Announcer) or
-                (($conversation->getIsAnnouncer()) and $user instanceof Adopter)
+                (!$conversation->getIsAnnouncer() and $user instanceof Announcer)
+                or ($conversation->getIsAnnouncer() and $user instanceof Adopter)
             ) {
                 $conversation->setIsRead(true);
 
@@ -122,5 +121,4 @@ class RequestController extends AbstractController
             'user' => $user,
         ]);
     }
-
 }
