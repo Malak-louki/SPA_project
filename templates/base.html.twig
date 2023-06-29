@@ -24,7 +24,7 @@
 							<a class="nav-link" href="{{path('home')}}">Accueil</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="{{path('app_list_announcement')}}">Liste annonces</a>
+							<a class="nav-link" href="{{path('announcement_listAnnouncement')}}">Liste annonces</a>
 						</li>
 						{% if not app.user %}
 							{% if not is_granted("ROLE_ADOPTER") or not is_granted("ROLE_ANNOUNCER") or not is_granted("ROLE_ADMIN") %}
@@ -35,7 +35,7 @@
 						{% endif %}
 						{% if not app.user %}
 							<li class="nav-item">
-								<a class="nav-link" href="{{path('app_register')}}">Inscription</a>
+								<a class="nav-link" href="{{path('registration_register')}}">Inscription</a>
 							</li>
 						{% endif %}
 						{% if is_granted("ROLE_ADOPTER") or is_granted("ROLE_ADMIN") %}

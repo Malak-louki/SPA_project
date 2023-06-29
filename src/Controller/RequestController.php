@@ -30,7 +30,7 @@ class RequestController extends AbstractController
         if (count($requests) > 0) {
             $this->addFlash('warning', 'Vous avez déjà postulé à cette annonce');
 
-            return $this->redirectToRoute('app_annonce', ['id' => $announcement->getId()]);
+            return $this->redirectToRoute('announcement_show', ['id' => $announcement->getId()]);
         }
 
         $firstRequest = new Request();
@@ -52,7 +52,7 @@ class RequestController extends AbstractController
             $requestRepository->save($firstRequest, true);
             $this->addFlash('success', 'Votre message a été envoyé.');
 
-            return $this->redirectToRoute('app_annonce', ['id' => $announcement->getId()]);
+            return $this->redirectToRoute('announcement_show', ['id' => $announcement->getId()]);
         }
 
         return $this->render('request/new.html.twig', [

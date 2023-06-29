@@ -16,10 +16,10 @@ class DogFilterType extends AbstractType
     {
         $announcement = $options['announcement'];
         $builder
-        ->add('isAdopted', CheckboxType::class, [
-            'label' => 'Chien déjà adopté(s)',
-            'required' => false,
-        ])
+            ->add('isAdopted', CheckboxType::class, [
+                'label' => 'Chien déjà adopté(s)',
+                'required' => false,
+            ])
             ->add('isLof', CheckboxType::class, [
                 'label' => 'LOF',
                 'required' => false,
