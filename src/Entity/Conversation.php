@@ -26,7 +26,7 @@ class Conversation
     #[ORM\Column]
     protected ?bool $isAnnouncer = null;
 
-    #[ORM\ManyToOne(inversedBy: 'conversations')]
+    #[ORM\ManyToOne(inversedBy: 'conversations', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     protected ?Request $request = null;
 

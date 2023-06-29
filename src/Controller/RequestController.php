@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Doctrine\ORM\EntityManagerInterface;
 
 class RequestController extends AbstractController
 {
@@ -65,13 +66,13 @@ class RequestController extends AbstractController
         ]);
     }
 
-    // #[IsGranted('ROLE_ADOPTER')]
     #[IsGranted('ROLE_USER')]
     #[Route('/fil-conversation/{id}', name: 'request_reply', requirements: ['id' => "\d+"])]
     public function reply(
         HttpRequest $request,
         ConversationRepository $conversationRepository,
         Request $requestReply,
+        EntityManagerInterface $entityManager
     ): Response {
         $user = $this->getUser();
         // Retriction d'accès
@@ -106,6 +107,11 @@ class RequestController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $conversationRepository->save($conversation, true);
+            $requestReply->setUpdatedAt(new \DateTimeImmutable());
+
+            $entityManager->persist($requestReply);
+            $entityManager->flush();
+
             $this->addFlash('success', 'Votre message a été envoyé.');
 
             return $this->redirectToRoute('request_reply', ['id' => $requestReply->getId()]);

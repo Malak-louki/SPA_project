@@ -37,9 +37,7 @@
             </ul>
             <hr>
         </div>
-        {# <p> {{conversations.content }}</p> #}
 
-        {# {{dump(requestReply.dogs|length )}} #}
         <ul class="list-unstyled d-flex flex-column gap-2">
             {% for conversation in conversations %}
             {% if  (is_granted("ROLE_ANNOUNCER") and conversation.isAnnouncer) or (is_granted("ROLE_ADOPTER") and not conversation.isAnnouncer) %}
