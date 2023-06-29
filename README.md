@@ -2,8 +2,8 @@
 
 ## Projet de groupe WoofAdopte
 
-Vous trouverez dans la dossier [ressources](ressources/) : 
- - Le fichier Looping de notre shéma BdD
+Vous trouverez dans le dossier [ressources](ressources/) : 
+ - Le fichier Looping de notre schéma BdD
  - La liste des départements français en csv
 
  Afin de pouvoir tester le projet, des fixtures ont été crée. 
