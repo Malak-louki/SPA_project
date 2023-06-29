@@ -5,7 +5,16 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-/public/img/dogs/
+/public/img/dogs/*
+!/public/img/dogs/cocaineDog.jpg
+!/public/img/dogs/cocaineDog1.jpg
+!/public/img/dogs/babyGolden.jpg
+!/public/img/dogs/babyGolden2.jpg
+!/public/img/dogs/babyGolden3.jpg
+!/public/img/dogs/kim.jpg
+!/public/img/dogs/kim1.jpg
+!/public/img/dogs/defaultImage.jpg
+!/public/img/dogs/images.jpg
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
