@@ -1814,6 +1814,7 @@
                 }
             ],
             "time": "2023-06-21T08:46:11+00:00"
+<<<<<<< HEAD
         },
         {
             "name": "nelmio/cors-bundle",
@@ -1876,6 +1877,8 @@
                 "source": "https://github.com/nelmio/NelmioCorsBundle/tree/2.3.1"
             },
             "time": "2023-02-16T08:49:29+00:00"
+=======
+>>>>>>> 9822596 (#59 - ajout du delete on update sur vich uploader config)
         },
         {
             "name": "phpdocumentor/reflection-common",

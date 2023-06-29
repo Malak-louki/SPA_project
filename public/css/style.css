@@ -2,17 +2,17 @@ a {
     color: rgb(52, 52, 52);
 }
 
-.listImg:first-child{
-    height: 200px;
+.listImg:first-child {
+    max-height: 200px;
     aspect-ratio: 1/1;
 }
 
-.listImg{
-    height: 100px;
+.listImg {
+    max-height: 100px;
     aspect-ratio: 1/1;
 }
 
-img{
-    height: 200px;
+img {
+    max-height: 200px;
     aspect-ratio: 1/1;
 }
