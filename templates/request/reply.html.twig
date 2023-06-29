@@ -23,6 +23,8 @@
                     {% endfor %}
                     </li>
                 {% endif %}
+                <li><strong>Créateur de l'annonce : </strong> {{announcement.announcer.lastName}}
+                </li>
             </ul>
             <hr>
             <h4>Information adopteur :</h4>
@@ -38,23 +40,34 @@
         {# <p> {{conversations.content }}</p> #}
 
         {# {{dump(requestReply.dogs|length )}} #}
-        <ul class="list-unstyled col-10">
+        <ul class="list-unstyled d-flex flex-column gap-2">
             {% for conversation in conversations %}
-            {% if user.instanceof('Announcer') %}
-                <li>
-                {{conversation.content}}
-                </li>
-            
+            {% if  (is_granted("ROLE_ANNOUNCER") and conversation.isAnnouncer) or (is_granted("ROLE_ADOPTER") and not conversation.isAnnouncer) %}
+                <li class="col-10 p-2 align-self-end bg-light border border-warning rounded-3">
+                {% else %}
+                <li class="col-10 p-2 border border-secondary rounded-3">
             {% endif %}
-            
+                <div class="d-flex justify-content-between">
+                    {% if conversation.isAnnouncer %}
+                    <strong>{{announcement.announcer.lastName}}</strong>
+                    {% else %}
+                        <strong>{{adopter.firstName}} {{adopter.lastName}}</strong>
+                    {% endif %}
+                    
+                    {{conversation.createdAt|date("d/m/Y") }}
+                </div>
+
+                {{conversation.content}}
+                </li>    
             {% endfor %}
         </ul>
             
-
+        {% if is_granted("ROLE_ANNOUNCER") or (is_granted("ROLE_ADOPTER") and requestReply.conversations|length > 1) %} 
         {{form_start(form)}}
             {{form_errors(form)}}
             {{ form_rest(form) }}
             <button type="submit" class="btn btn-warning">Envoyer</button>
         {{form_end(form)}}
+        {% endif %}
     </section>
 {% endblock body %}

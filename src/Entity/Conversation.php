@@ -67,7 +67,7 @@ class Conversation
         return $this;
     }
 
-    public function isIsAnnouncer(): ?bool
+    public function getIsAnnouncer(): ?bool
     {
         return $this->isAnnouncer;
     }
@@ -91,7 +91,7 @@ class Conversation
         return $this;
     }
 
-    public function isIsRead(): ?bool
+    public function getIsRead(): ?bool
     {
         return $this->isRead;
     }

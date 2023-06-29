@@ -69,15 +69,13 @@ class RequestController extends AbstractController
     #[IsGranted('ROLE_USER')]
     #[Route('/fil-conversation/{id}', name: 'request_reply', requirements: ['id' => "\d+"])]
     public function reply(
-        int $id,
         HttpRequest $request,
-        RequestRepository $requestRepository,
-        ConversationRepository $conversationRepository
+        ConversationRepository $conversationRepository,
+        Request $requestReply,
     ): Response {
 
-        $requestReply = $requestRepository->find($id);
-
         $user = $this->getUser();
+        // Retriction d'accès
         if ($user instanceof Adopter && $user != $requestReply->getAdopter()) {
             throw new AccessDeniedHttpException("Vous n'avez pas les droits pour accèder
             à cette page.");
@@ -85,6 +83,17 @@ class RequestController extends AbstractController
         if ($user instanceof Announcer && $user != $requestReply->getAnnouncement()->getAnnouncer()) {
             throw new AccessDeniedHttpException("Vous n'avez pas les droits pour accèder
             à cette page.");
+        }
+        // Envoi en BdD si conversation lu
+        foreach ($requestReply->getConversations() as $conversation) {
+            if (
+                (!($conversation->getIsAnnouncer()) and $user instanceof Announcer) or
+                (($conversation->getIsAnnouncer()) and $user instanceof Adopter)
+            ) {
+                $conversation->setIsRead(true);
+
+                $conversationRepository->save($conversation, true);
+            }
         }
 
         $conversation = (new Conversation())
