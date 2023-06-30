@@ -5,7 +5,6 @@ namespace App\Form;
 use App\Entity\Department;
 use App\Entity\User;
 use App\Repository\DepartmentRepository;
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
