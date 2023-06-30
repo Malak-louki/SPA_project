@@ -102,4 +102,5 @@ class Conversation
 
         return $this;
     }
+
 }

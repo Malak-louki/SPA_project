@@ -148,4 +148,13 @@ class Request
 
         return $this;
     }
+    public function lastMsgInfo():bool {
+        $infoMsg = false;
+        foreach ($this->getConversations() as $conversation){
+            if (!$conversation->getIsRead() && $conversation->getIsAnnouncer()){
+                $infoMsg = true;
+            }
+        }
+        return $infoMsg;
+    }
 }
