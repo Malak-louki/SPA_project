@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fil de discussion{% endblock %}
+
+{% block body %}
+    <section class="container mt-5">
+        <div class="">
+            <h1 class="font-weight-bold">
+                Fil de discussion
+            </h1>
+            <h4>Information annonce :</h4>
+            <ul style="list-style: none;">
+                <li> <strong>Titre </strong>{{announcement.title }}</li>
+                <li> <strong>Nombre de chien selectionné : </strong> {{requestReply.dogs|length }}</li>
+                {% if requestReply.dogs|length > 0 %}
+                <li> <strong>Nom chien : </strong> 
+                    {% for dog in dogs %}
+                        {{dog.name}}
+                        {% if not loop.last %}
+                            {{' / '}}
+                        {% endif %}
+                        
+                    {% endfor %}
+                    </li>
+                {% endif %}
+                <li><strong>Créateur de l'annonce : </strong> {{announcement.announcer.lastName}}
+                </li>
+            </ul>
+            <hr>
+            <h4>Information adopteur :</h4>
+            <ul style="list-style: none;">
+                <li> <strong>Prénom / Nom : </strong>{{adopter.firstname}} {{adopter.lastname}}
+                </li>
+                <li> <strong> e-Mail : </strong>{{adopter.email}}</li>
+                <li> <strong> Téléphone : </strong>{{adopter.tel}}</li>
+                <li> <strong> Ville / Département : </strong> {{adopter.city}} - {{adopter.department.name ~ ' (' ~ adopter.department.departmentCode ~ ') ' }}</li>
+            </ul>
+            <hr>
+        </div>
+
+        <ul class="list-unstyled d-flex flex-column gap-2">
+            {% for conversation in conversations %}
+            {% if  (is_granted("ROLE_ANNOUNCER") and conversation.isAnnouncer) or (is_granted("ROLE_ADOPTER") and not conversation.isAnnouncer) %}
+                <li class="col-10 p-2 align-self-end bg-light border border-warning rounded-3">
+                {% else %}
+                <li class="col-10 p-2 border border-secondary rounded-3">
+            {% endif %}
+                <div class="d-flex justify-content-between">
+                    {% if conversation.isAnnouncer %}
+                    <strong>{{announcement.announcer.lastName}}</strong>
+                    {% else %}
+                        <strong>{{adopter.firstName}} {{adopter.lastName}}</strong>
+                    {% endif %}
+                    
+                    {{conversation.createdAt|date("d/m/Y") }}
+                </div>
+
+                {{conversation.content}}
+                </li>    
+            {% endfor %}
+        </ul>
+            
+        {% if is_granted("ROLE_ANNOUNCER") or (is_granted("ROLE_ADOPTER") and requestReply.conversations|length > 1) %} 
+        {{form_start(form)}}
+            {{form_errors(form)}}
+            {{ form_rest(form) }}
+            <button type="submit" class="btn btn-warning">Envoyer</button>
+        {{form_end(form)}}
+        {% endif %}
+    </section>
+{% endblock body %}

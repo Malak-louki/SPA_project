@@ -26,9 +26,12 @@ class Conversation
     #[ORM\Column]
     protected ?bool $isAnnouncer = null;
 
-    #[ORM\ManyToOne(inversedBy: 'conversations')]
+    #[ORM\ManyToOne(inversedBy: 'conversations', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false)]
     protected ?Request $request = null;
+
+    #[ORM\Column]
+    private ?bool $isRead = false;
 
     public function __construct()
     {
@@ -64,7 +67,7 @@ class Conversation
         return $this;
     }
 
-    public function isIsAnnouncer(): ?bool
+    public function getIsAnnouncer(): ?bool
     {
         return $this->isAnnouncer;
     }
@@ -84,6 +87,18 @@ class Conversation
     public function setRequest(?Request $request): self
     {
         $this->request = $request;
+
+        return $this;
+    }
+
+    public function getIsRead(): ?bool
+    {
+        return $this->isRead;
+    }
+
+    public function setIsRead(bool $isRead): static
+    {
+        $this->isRead = $isRead;
 
         return $this;
     }
