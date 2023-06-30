@@ -51,11 +51,9 @@
                     {% else %}
                         <strong>{{adopter.firstName}} {{adopter.lastName}}</strong>
                     {% endif %}
-                    
                     {{conversation.createdAt|date("d/m/Y") }}
                 </div>
-
-                {{conversation.content}}
+                {{conversation.content|nl2br}}
                 </li>    
             {% endfor %}
         </ul>

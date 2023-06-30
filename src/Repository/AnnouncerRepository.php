@@ -62,14 +62,4 @@ class AnnouncerRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-
-    //    public function findOneBySomeField($value): ?Announcer
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
 }

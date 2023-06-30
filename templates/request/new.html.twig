@@ -13,8 +13,7 @@
         {{form_start(form)}}
         <h4 class="mt-5">Je souhaite plus d'informations sur :</h4>
             {{form_widget(form.dogs)}} 
-            {{form_widget(form.adopter)}} 
-            {# {{form_row(form.conversations)}}  #}
+            {{form_widget(form.adopter)}}
             {{ form_widget(form.conversations) }}
             {{form_errors(form)}}
             <button type="submit" class="btn btn-warning">Envoyer</button>
