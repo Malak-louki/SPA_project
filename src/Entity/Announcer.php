@@ -48,7 +48,6 @@ class Announcer extends User
     public function removeAnnouncement(Announcement $announcement): self
     {
         if ($this->announcements->removeElement($announcement)) {
-            // set the owning side to null (unless already changed)
             if ($announcement->getAnnouncer() === $this) {
                 $announcement->setAnnouncer(null);
             }

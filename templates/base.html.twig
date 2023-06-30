@@ -40,7 +40,7 @@
 						{% endif %}
 						{% if is_granted("ROLE_ADOPTER") or is_granted("ROLE_ADMIN") %}
 							<li class="nav-item">
-								<a class="nav-link" href="#">Mon compte</a>
+								<a class="nav-link" href="{{path('my_account_view')}}">Mon compte</a>
 							</li>
 						{% elseif is_granted("ROLE_ANNOUNCER") %}
 							<li class="nav-item">
