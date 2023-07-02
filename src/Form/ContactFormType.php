@@ -22,7 +22,7 @@ class ContactFormType extends AbstractType
                 [
                     'required' => true,
                     'label' => 'Nom *',
-                    'contraints' => [
+                    'constraints' => [
                         new NotBlank([
                             'message' => 'Entrez un message svp',
                         ]),
@@ -35,7 +35,7 @@ class ContactFormType extends AbstractType
                 [
                     'required' => true,
                     'label' => 'Mail *',
-                    'contraints' => [
+                    'constraints' => [
                         new NotBlank([
                             'message' => 'Entrez un message svp',
                         ]),
@@ -48,7 +48,7 @@ class ContactFormType extends AbstractType
                 [
                     'required' => true,
                     'label' => 'Sujet *',
-                    'contraints' => [
+                    'constraints' => [
                         new NotBlank([
                             'message' => 'Entrez un message svp',
                         ]),
@@ -61,7 +61,7 @@ class ContactFormType extends AbstractType
                 [
                     'required' => true,
                     'label' => 'Message *',
-                    'contraints' => [
+                    'constraints' => [
                         new NotBlank([
                             'message' => 'Entrez un message svp',
                         ]),

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contacter Support
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="text-center mb-5 mt-3">Contacter le support</h1>
+	<div class="container">
+		<div class="row justify-content-center m-auto w-75">
+			{{ form_start(contactForm) }}
+			<div class="form-group mb-3">
+				{{ form_row(contactForm.name) }}
+			</div>
+			<div class="form-group mb-3">
+				{{ form_row(contactForm.email) }}
+			</div>
+			<div class="form-group mb-3">
+				{{ form_row(contactForm.subject) }}
+			</div>
+			<div class="form-group mb-3">
+				{{ form_row(contactForm.message) }}
+			</div>
+			<div class="d-flex justify-content-center">
+				<button type="submit" class="btn btn-warning w-25  m-auto">Envoyer</button>
+			</div>
+			{{ form_end(contactForm) }}
+		</div>
+	</div>
+
+{% endblock %}
