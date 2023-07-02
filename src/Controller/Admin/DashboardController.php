@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Adopter;
 use App\Entity\Announcer;
+use App\Entity\Contact;
 use App\Entity\Race;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -42,5 +43,6 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Adoptants', 'fas fa-user', Adopter::class);
         yield MenuItem::linkToCrud('Annonceurs', 'fas fa-id-card', Announcer::class);
         yield MenuItem::linkToCrud('Races', 'fas fa-paw', Race::class);
+        yield MenuItem::linkToCrud('Messages', 'fas fa-message', Contact::class);
     }
 }
