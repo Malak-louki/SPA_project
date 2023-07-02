@@ -1,5 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block body%}
+<div id="header_img">
+<h1 id="title">WoofAdpote</h1>
+</div>
 	<h1>
 		Les dernières annonces :</h1>
 	{% block announcements %}
@@ -8,7 +11,7 @@
 				{% for announcement in announcements %}
 					{% if announcement.dogs|length != 0 %}
 						{% if not announcement.announcementClosed %}
-							<div class="my-5 p-3 col-5 bg-body-secondary">
+							<div id="grey-card" class="my-5 p-3 col-5 bg-body-secondary">
 								<div class="chiens d-flex flex-row flex-wrap justify-content-evenly">
 									{% for image in announcement.getDogsImages|slice(0, 3) %}
 										<img src="{{vich_uploader_asset(image)}}" alt="image de chien" class="listImg">

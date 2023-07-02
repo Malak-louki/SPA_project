@@ -1,22 +1,36 @@
 a {
   color: rgb(52, 52, 52);
 }
-
 .listImg:first-child {
     max-height: 200px;
-    aspect-ratio: 1/1;
+    object-fit: cover;
 }
-
 .listImg {
     max-height: 100px;
-    aspect-ratio: 1/1;
+    object-fit: cover;
 }
-
 img {
     max-height: 200px;
-    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 20px;
+    margin: 15px;
 }
-
 #account {
   background-color: rgba(184, 184, 184, 0.103);
+}
+#header_img{
+  background:  linear-gradient(110deg, rgba(255,218,25,0.3533613274411327) 0%, rgba(9,9,121,0.15168065517222518) 79%),url("/img/dogs/banniere-img.jpg");
+  height: 90vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+}
+#title{
+  text-align: center;
+  color: antiquewhite;
+padding-top: 250px;
+font-size: 3.5rem;
+}
+#grey-card{
+  border-radius: 30px;
 }
