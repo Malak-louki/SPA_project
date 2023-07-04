@@ -1,0 +1,19 @@
+import: 
+  - recipe/symfony.php
+
+config:
+  repository: 'git@github.com:Malak-louki/SPA_project.git'
+  ssh_multiplexing: false
+  forward_agent: true
+
+hosts:
+  51.77.158.108:
+    remote_user: debian
+    deploy_path: '~/woofAdopte'
+
+tasks:
+  build:
+    - run: uptime  
+
+after:
+  deploy:failed: deploy:unlock
